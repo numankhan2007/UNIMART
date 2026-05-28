@@ -1,4 +1,4 @@
-<![CDATA[<div align="center">
+<div align="center">
 
 <!-- Animated Header -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,50:0d1117,100:00d4ff&height=220&section=header&text=UNIMART&fontSize=80&fontColor=00d4ff&animation=fadeIn&fontAlignY=35&desc=The%20Trusted%20Campus%20Marketplace&descSize=18&descAlignY=55&descColor=ffffff" width="100%" />
@@ -546,4 +546,4 @@ This project is licensed under the **Apache License 2.0** — see the [LICENSE](
 <sub>UNIMART © 2026 • <a href="https://github.com/numankhan2007/UNIMART">github.com/numankhan2007/UNIMART</a></sub>
 
 </div>
-]]>
+
