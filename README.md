@@ -162,8 +162,8 @@ erDiagram
     }
 
     user_profiles {
-        string register_number PK_FK
-        string username UK
+        string register_number PK
+        string username
         string hashed_password
         string profile_picture_url
         string personal_mail_id
@@ -253,7 +253,7 @@ pip install -r requirements.txt
 
 # Configure environment
 cp .env.example .env
-# Edit .env with your credentials (see Environment Variables below)
+# Edit .env with your credentials (see .env.example for reference)
 
 # Seed official records (first time only)
 python seed_data.py
@@ -285,52 +285,6 @@ npm run dev
 | `http://localhost:5173/login` | 🔐 Student Login |
 | `http://localhost:5173/admin/login` | 🖥️ Admin Panel *(hidden — no UI link)* |
 | `http://localhost:8000/docs` | 📖 FastAPI Swagger Docs |
-
----
-
-## 🔑 Environment Variables
-
-### Backend (`.env`)
-
-```env
-# Application
-APP_ENV=development
-
-# Database (Supabase PostgreSQL)
-DATABASE_URL=postgresql://postgres.[REF]:[PASS]@aws-0-[REGION].pooler.supabase.com:5432/postgres
-
-# Redis
-REDIS_URL=redis://localhost:6379
-
-# JWT Secrets (min 32 chars in production)
-SECRET_KEY=your-secret-key-min-32-chars
-REFRESH_TOKEN_SECRET=your-refresh-secret
-ADMIN_JWT_SECRET=your-admin-secret
-
-# CORS
-CORS_ORIGINS=http://localhost:5173
-
-# Cloudinary
-CLOUDINARY_CLOUD_NAME=your_cloud
-CLOUDINARY_API_KEY=your_key
-CLOUDINARY_API_SECRET=your_secret
-
-# SMTP (Gmail App Password recommended)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your_email@gmail.com
-SMTP_PASSWORD=your_app_password
-
-# Admin Seed
-ADMIN_USERNAME=admin123
-ADMIN_PASSWORD=YourStrongPassword
-```
-
-### Frontend (`.env.local`)
-
-```env
-VITE_API_URL=http://localhost:8000
-```
 
 ---
 
