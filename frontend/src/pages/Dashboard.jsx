@@ -101,27 +101,43 @@ export default function Dashboard() {
     setSearchParams({ tab });
   };
 
-  const handleAvatarUpload = (e) => {
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
+
+  const handleAvatarUpload = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        updateProfile({ profile_picture_url: reader.result });
-      };
-      reader.readAsDataURL(file);
+    if (!file) return;
+    setUploadingAvatar(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const { data } = await api.post('/upload/image', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      await updateProfile({ profile_picture_url: data.url });
+    } catch (err) {
+      console.error('Avatar upload failed:', err);
+    } finally {
+      setUploadingAvatar(false);
     }
   };
 
   // Edit Profile Modal - avatar upload
   const editAvatarRef = useRef(null);
-  const handleEditAvatarUpload = (e) => {
+  const handleEditAvatarUpload = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        updateProfile({ profile_picture_url: reader.result });
-      };
-      reader.readAsDataURL(file);
+    if (!file) return;
+    setUploadingAvatar(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const { data } = await api.post('/upload/image', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      await updateProfile({ profile_picture_url: data.url });
+    } catch (err) {
+      console.error('Avatar upload failed:', err);
+    } finally {
+      setUploadingAvatar(false);
     }
   };
 
@@ -194,10 +210,10 @@ export default function Dashboard() {
                 )}
               </div>
               <button
-                onClick={() => fileInputRef.current?.click()}
+                onClick={() => !uploadingAvatar && fileInputRef.current?.click()}
                 className="absolute inset-0 rounded-2xl bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all cursor-pointer"
               >
-                <Camera size={20} className="text-white" />
+                {uploadingAvatar ? <Loader2 size={20} className="text-white animate-spin" /> : <Camera size={20} className="text-white" />}
               </button>
               <input
                 ref={fileInputRef}
@@ -411,10 +427,10 @@ export default function Dashboard() {
                         )}
                       </div>
                       <button
-                        onClick={() => editAvatarRef.current?.click()}
+                        onClick={() => !uploadingAvatar && editAvatarRef.current?.click()}
                         className="absolute inset-0 rounded-xl bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all cursor-pointer"
                       >
-                        <Camera size={16} className="text-white" />
+                        {uploadingAvatar ? <Loader2 size={16} className="text-white animate-spin" /> : <Camera size={16} className="text-white" />}
                       </button>
                       <input
                         ref={editAvatarRef}

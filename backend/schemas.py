@@ -29,8 +29,8 @@ class UserSignup(BaseModel):
             raise ValueError("Username must be at least 3 characters")
         if len(v) > 30:
             raise ValueError("Username must be 30 characters or less")
-        if not re.match(r"^[a-zA-Z0-9_.-]+$", v):
-            raise ValueError("Username may only contain letters, digits, _, -, .")
+        if not re.match(r"^[a-zA-Z0-9_.@-]+$", v):
+            raise ValueError("Username may only contain letters, digits, _, -, ., @")
         return v
 
 

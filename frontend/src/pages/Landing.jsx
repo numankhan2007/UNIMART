@@ -1,17 +1,16 @@
 /**
- * UNIMART Landing.jsx v6.0
+ * UNIMART Landing.jsx v7.0
  * - Pitch black background
- * - No Marvel intro — loads directly to main content
- * - RGB glow cycling animation on title (rainbow spectrum)
+ * - No admin button — admin accessible only via manual URL
+ * - Plain themed UNIMART title (no animation)
+ * - Normal cursor (no glow cursor)
+ * - "Enroll Now" style button for user portal
  * - Social icon footer (Telegram, Mail, YouTube, Facebook, Twitter, GitLab)
- * - All cards & buttons: fully transparent, outline only
- * - Glow cursor follows mouse (desktop only)
+ * - All cards: fully transparent, outline only
  */
 
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./landing.css";
-import { initGlowCursor, destroyGlowCursor } from "../components/GlowCursor";
 
 // -- UPDATE THESE HREFS WITH YOUR ACTUAL LINKS --
 const SOCIAL_LINKS = [
@@ -54,33 +53,6 @@ const FEATURE_CARDS = [
   { icon: "🔒", title: "Trust-First Ecosystem",    desc: "A closed, invite-only marketplace. No anonymous sellers. No unverified buyers. Safety by design." },
 ];
 
-// -- PORTAL BUTTON — transparent, outline + glow only --
-function PortalButton({ label, icon, sublabel, color, onClick, animDelay="0s" }) {
-  const [ring, setRing] = useState(false);
-  return (
-    <button className="lnd-portal-btn" onClick={onClick}
-      onMouseEnter={() => setRing(true)} onMouseLeave={() => setRing(false)}
-      style={{
-        "--pc": color, "--pc-dim": `${color}22`,
-        position:"relative",
-        width:"clamp(140px,18vw,210px)", height:"clamp(140px,18vw,210px)",
-        borderRadius:16, border:`2px solid ${color}88`,
-        background:"transparent",
-        display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:7,
-        animation:`lnd-portal-glow 3s ease-in-out ${animDelay} infinite, lnd-fade-up 0.6s ease ${animDelay} both`,
-        backdropFilter:"blur(2px)", overflow:"visible",
-      }}>
-      {ring && <div style={{ position:"absolute",inset:-10,borderRadius:24, border:`2px solid ${color}44`, animation:"lnd-ring 0.85s ease-out infinite", pointerEvents:"none" }} />}
-      {[["top","left"],["top","right"],["bottom","left"],["bottom","right"]].map(([v,h]) => (
-        <div key={`${v}${h}`} style={{ position:"absolute",[v]:9,[h]:9,width:15,height:15, borderTop:v==="top"?`2px solid ${color}`:"none", borderBottom:v==="bottom"?`2px solid ${color}`:"none", borderLeft:h==="left"?`2px solid ${color}`:"none", borderRight:h==="right"?`2px solid ${color}`:"none" }} />
-      ))}
-      <span style={{ fontFamily:"'Orbitron',sans-serif",fontWeight:900,fontSize:"clamp(16px,2.6vw,25px)",color:"#fff",letterSpacing:"0.1em",textShadow:`0 0 14px ${color},0 0 32px ${color}88` }}>{label}</span>
-      <span style={{ fontSize:"clamp(26px,3.8vw,44px)",animation:"lnd-icon-float 2.4s ease-in-out infinite",filter:`drop-shadow(0 0 10px ${color})` }}>{icon}</span>
-      <span style={{ fontFamily:"'Share Tech Mono',monospace",fontSize:"clamp(8px,0.95vw,11px)",color:`${color}bb`,letterSpacing:"0.17em",textTransform:"uppercase" }}>{sublabel}</span>
-      <div className="lnd-scanlines" style={{ position:"absolute",inset:0,borderRadius:14 }} />
-    </button>
-  );
-}
 
 // -- FEATURE CARD — transparent, border outline only --
 function FeatureCard({ icon, title, desc, animDelay="0s" }) {
@@ -107,7 +79,7 @@ function SocialFooter() {
               border:"1px solid rgba(0,212,255,0.38)",
               display:"flex",alignItems:"center",justifyContent:"center",
               color:"rgba(0,212,255,0.82)", textDecoration:"none",
-              animation:`lnd-social-in 0.4s cubic-bezier(0.34,1.4,0.64,1) ${1.2+i*0.07}s both`,
+              animation:`lnd-social-in 0.4s cubic-bezier(0.34,1.4,0.64,1) ${0.8+i*0.07}s both`,
             }}>{icon}</a>
         ))}
       </div>
@@ -118,14 +90,6 @@ function SocialFooter() {
   );
 }
 
-// -- GLOW CURSOR -- injected DOM nodes
-function GlowCursorMount() {
-  useEffect(() => {
-    initGlowCursor();
-    return () => destroyGlowCursor();
-  }, []);
-  return null;
-}
 
 // -- MAIN LANDING --
 function MainLanding() {
@@ -142,7 +106,7 @@ function MainLanding() {
       gap:"clamp(32px,5vh,56px)",zIndex:1,
     }}>
 
-{/* SECTION 1 — UNIMART TITLE — RGB glow, static, no animation */}
+{/* SECTION 1 — UNIMART TITLE — Plain, themed, no animation */}
 <div style={{ textAlign: "center", position: "relative" }}>
   <h1
     style={{
@@ -153,14 +117,9 @@ function MainLanding() {
       letterSpacing: "-2px",
       margin: 0,
       padding: 0,
-      color: "transparent",
-      backgroundImage: "linear-gradient(90deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff, #ff0000)",
-      backgroundSize: "400% 100%",
-      WebkitBackgroundClip: "text",
-      backgroundClip: "text",
-      WebkitTextFillColor: "transparent",
+      color: "#00d4ff",
+      textShadow: "0 0 30px rgba(0,212,255,0.4), 0 0 60px rgba(0,212,255,0.15)",
       display: "block",
-      animation: "lnd-rgb-cycle 4s linear infinite",
     }}
   >
     UNIMART
@@ -182,15 +141,34 @@ function MainLanding() {
       {/* 4. Social footer links */}
       <SocialFooter />
 
-      {/* 5. USER + ADMIN buttons — transparent */}
-      <div className="lnd-buttons-row" style={{ display:"flex",gap:"clamp(18px,4vw,52px)",flexWrap:"wrap",justifyContent:"center" }}>
-        <PortalButton label="USER"  icon="🎓" sublabel="Student Portal"  color="#00d4ff" animDelay="1.1s" onClick={() => navigate("/login")} />
-        <PortalButton label="ADMIN" icon="🛡️" sublabel="Control Center" color="#ff2d55" animDelay="1.2s" onClick={() => navigate("/admin")} />
+      {/* 5. Enroll Now Button — styled like a CTA */}
+      <div style={{ display:"flex",justifyContent:"center", animation:"lnd-fade-up 0.6s ease 0.5s both" }}>
+        <button
+          className="lnd-enroll-btn"
+          onClick={() => navigate("/login")}
+          style={{
+            padding: "16px 52px",
+            borderRadius: 14,
+            border: "2px solid #00d4ff",
+            background: "linear-gradient(135deg, rgba(0,212,255,0.15) 0%, rgba(0,212,255,0.05) 100%)",
+            color: "#00d4ff",
+            fontFamily: "'Orbitron', sans-serif",
+            fontWeight: 800,
+            fontSize: "clamp(16px, 2.2vw, 22px)",
+            letterSpacing: "0.12em",
+            cursor: "pointer",
+            textShadow: "0 0 14px rgba(0,212,255,0.5)",
+            boxShadow: "0 0 25px rgba(0,212,255,0.2), inset 0 0 25px rgba(0,212,255,0.05)",
+            transition: "all 0.3s ease",
+          }}
+        >
+          ENROLL NOW
+        </button>
       </div>
 
       {/* 6. Feature cards — fully transparent, outline only */}
       <div className="lnd-cards-row" style={{ display:"flex",gap:"clamp(12px,2vw,20px)",width:"100%",maxWidth:1100,flexWrap:"wrap",justifyContent:"center" }}>
-        {FEATURE_CARDS.map((c,i) => <FeatureCard key={c.title} icon={c.icon} title={c.title} desc={c.desc} animDelay={`${1.3+i*0.1}s`} />)}
+        {FEATURE_CARDS.map((c,i) => <FeatureCard key={c.title} icon={c.icon} title={c.title} desc={c.desc} animDelay={`${0.7+i*0.1}s`} />)}
       </div>
     </div>
   );
@@ -199,12 +177,10 @@ function MainLanding() {
 // -- ROOT --
 export default function Landing() {
   return (
-    <div className="lnd-cursor-hidden" style={{ minHeight: "100vh" }}>
+    <div style={{ minHeight: "100vh" }}>
       {/* Pitch black background */}
       <div style={{ position: "fixed", inset: 0, zIndex: 0, background: "#000000" }} />
-      {/* Glow cursor (desktop only) */}
-      <GlowCursorMount />
-      {/* Main landing — no intro, loads directly */}
+      {/* Main landing — no intro, loads directly, normal cursor */}
       <MainLanding />
     </div>
   );

@@ -14,7 +14,7 @@ from settings import require_secret, is_production
 
 logger = logging.getLogger("unimart.admin")
 
-load_dotenv()
+load_dotenv(override=True)
 
 ADMIN_JWT_SECRET = os.getenv("ADMIN_JWT_SECRET", "change-this-admin-secret-in-production")
 ADMIN_TOKEN_EXPIRE = timedelta(hours=8)

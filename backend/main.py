@@ -142,23 +142,72 @@ if is_production() and TRUSTED_HOSTS:
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=TRUSTED_HOSTS)
 
 # ============================================================
+from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException as StarletteHTTPException
+from fastapi.responses import JSONResponse
+
 # EXCEPTION HANDLERS (To preserve CORS on unhandled exceptions)
 # ============================================================
+
+def add_cors_headers(response: JSONResponse, request: Request) -> JSONResponse:
+    origin = request.headers.get("origin")
+    if origin in ALLOWED_ORIGINS:
+        response.headers["Access-Control-Allow-Origin"] = origin
+        response.headers["Access-Control-Allow-Credentials"] = "true"
+    return response
 
 @app.exception_handler(redis.RedisError)
 async def redis_exception_handler(request: Request, exc: redis.RedisError):
     logger.exception("Redis exception caught")
-    return JSONResponse(
-        status_code=500,
-        content={"detail": "Cache/Database connection failed. Please try again later."},
+    return add_cors_headers(
+        JSONResponse(
+            status_code=500,
+            content={"detail": "Cache/Database connection failed. Please try again later."},
+        ),
+        request
+    )
+
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request: Request, exc: StarletteHTTPException):
+    return add_cors_headers(
+        JSONResponse(
+            status_code=exc.status_code,
+            content={"detail": exc.detail},
+            headers=getattr(exc, "headers", None)
+        ),
+        request
+    )
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    errors = exc.errors()
+    # Extract friendly messages (e.g., "username: Value error...")
+    messages = []
+    for err in errors:
+        field = str(err.get("loc", [""])[-1])
+        msg = str(err.get("msg", "")).replace("Value error, ", "")
+        messages.append(f"{field}: {msg}")
+        
+    return add_cors_headers(
+        JSONResponse(
+            status_code=422,
+            content={"detail": " | ".join(messages)},
+        ),
+        request
     )
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
+    import traceback
+    with open("error.log", "w") as f:
+        f.write(traceback.format_exc())
     logger.exception("Unhandled exception caught")
-    return JSONResponse(
-        status_code=500,
-        content={"detail": "Internal Server Error. Please contact support."},
+    return add_cors_headers(
+        JSONResponse(
+            status_code=500,
+            content={"detail": "Internal Server Error. Please contact support."},
+        ),
+        request
     )
 
 # ============================================================
