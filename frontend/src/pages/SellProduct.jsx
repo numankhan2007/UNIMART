@@ -118,8 +118,8 @@ export default function SellProduct() {
 
   return (
     <div className="section-padding page-padding">
-      <div className="max-w-2xl mx-auto space-y-8">
-        <div>
+      <div className="max-w-2xl mx-auto space-y-8 glass-card p-6 sm:p-10 scale-in">
+        <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Sell a Product</h1>
           <p className="text-gray-500 dark:text-gray-400 mt-1">
             List your item for other students on {user?.campus || 'campus'}.

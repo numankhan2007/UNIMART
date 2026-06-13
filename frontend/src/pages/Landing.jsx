@@ -72,13 +72,7 @@ export default function Landing() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-[#fcfcfd] flex flex-col font-sans">
-      
-      <div className="fixed inset-0 pointer-events-none overflow-hidden flex justify-center items-center z-0">
-        <div className="absolute top-[-10%] w-[800px] h-[800px] bg-blue-100/40 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] w-[600px] h-[600px] bg-indigo-50/50 rounded-full blur-[100px]" />
-      </div>
-
+    <div className="min-h-screen flex flex-col font-sans">
       <main className="flex-1 relative z-10 flex flex-col items-center w-full max-w-5xl mx-auto px-6">
         
         <section className="w-full pt-32 pb-24 flex flex-col items-center text-center">

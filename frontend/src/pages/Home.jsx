@@ -115,10 +115,7 @@ export default function Home() {
   return (
     <div>
       {/* Premium Minimalist Hero Section */}
-      <section className="relative overflow-hidden bg-[#FAFBFC] dark:bg-[#0A0A0F] pt-12 pb-20 lg:pt-20 lg:pb-28">
-        {/* Subtle blur orbs for depth */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-100/50 dark:bg-primary-900/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-100/50 dark:bg-purple-900/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/3 pointer-events-none" />
+      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28">
 
         <div className="section-padding relative">
           <div className="text-center max-w-3xl mx-auto">

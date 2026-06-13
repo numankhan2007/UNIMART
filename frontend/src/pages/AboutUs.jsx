@@ -75,10 +75,10 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-[#0a0a0a]">
+    <div className="flex flex-col font-sans">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-        <div className="section-padding py-20 relative z-10">
+      <div className="relative overflow-hidden mb-8">
+        <div className="section-padding py-20 relative z-10 scale-in">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               About <span className="gradient-text">VGLUG Foundation</span>
@@ -96,7 +96,7 @@ const AboutUs = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700/50 hover:shadow-xl hover:border-indigo-500/30 transition-all group"
+              className="glass-card p-6 group"
             >
               <div className={`w-14 h-14 rounded-xl ${feature.bgColor} ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                 <feature.icon size={28} />
@@ -113,7 +113,7 @@ const AboutUs = () => {
       </div>
 
       {/* Contributions */}
-      <div className="bg-white dark:bg-gray-900 py-20 border-y border-gray-200 dark:border-gray-800">
+      <div className="py-20 mb-8">
         <div className="section-padding">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Contribution to FOSS &amp; Society</h2>
@@ -126,7 +126,7 @@ const AboutUs = () => {
             {contributions.map((comp, i) => (
               <div
                 key={i}
-                className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-2xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-lg transition-all border border-transparent hover:border-gray-200 dark:hover:border-gray-700"
+                className="glass-card p-6 group"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="p-3 bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 rounded-xl">
@@ -155,7 +155,7 @@ const AboutUs = () => {
             {recognitions.map((item, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 p-6 bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700/50 hover:border-amber-500/30 transition-colors"
+                className="flex items-start gap-4 p-6 glass-card group"
               >
                 <div className="p-4 bg-amber-100 dark:bg-amber-500/10 text-amber-600 dark:text-amber-500 rounded-2xl shrink-0">
                   <item.icon size={32} />

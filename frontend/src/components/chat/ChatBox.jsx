@@ -14,14 +14,14 @@ export default function ChatBox({ messages, order, currentUser, otherUser, other
   }, [messages]);
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-xl">
+    <div className="flex flex-col h-full glass-card overflow-hidden">
       {/* Header */}
       <ChatHeader order={order} otherUser={otherUser} otherUserProfilePicture={otherUserProfilePicture} />
 
       {/* Messages */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto p-4 space-y-1 bg-gray-50 dark:bg-gray-900"
+        className="flex-1 overflow-y-auto p-4 space-y-1 bg-transparent"
         style={{ minHeight: '400px' }}
       >
         {messages.length === 0 ? (
