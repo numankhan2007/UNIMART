@@ -80,7 +80,7 @@ function FAQItem({ question }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden">
+    <div className="glass-card overflow-hidden transition-all duration-300">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
@@ -162,8 +162,8 @@ export default function HelpCenter() {
         )}
 
         {/* Contact Card */}
-        <div className="card p-6 text-center bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/10 dark:to-purple-900/10 border-indigo-200 dark:border-indigo-800/30">
-          <MessageCircle size={28} className="mx-auto text-indigo-500 mb-3" />
+        <div className="glass-card p-6 text-center bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/10 dark:to-purple-900/10 border-primary-200 dark:border-primary-800/30">
+          <MessageCircle size={28} className="mx-auto text-primary-500 mb-3" />
           <h3 className="font-bold text-gray-900 dark:text-white">Still need help?</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 mb-1">
             Our support team is available 24/7 to assist you.

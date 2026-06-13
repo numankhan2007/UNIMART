@@ -151,7 +151,7 @@ export default function TermsAndConditions() {
         </div>
 
         {/* Table of Contents */}
-        <div className="card p-5 mb-8">
+        <div className="glass-card p-5 mb-8">
           <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Quick Navigation</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {sections.map((section) => (
@@ -173,7 +173,7 @@ export default function TermsAndConditions() {
             <div
               key={section.id}
               id={section.id}
-              className="card p-6"
+              className="glass-card p-6"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center flex-shrink-0">
@@ -212,8 +212,8 @@ export default function TermsAndConditions() {
         {/* Agreement Footer */}
         {!isAuthenticated && (
           <div className="mt-10 text-center">
-            <div className="card p-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/10 dark:to-purple-900/10 border-indigo-200 dark:border-indigo-800/30">
-              <p className="text-sm text-indigo-700 dark:text-indigo-300 font-medium">
+            <div className="glass-card p-6 bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/10 dark:to-purple-900/10 border-primary-200 dark:border-primary-800/30">
+              <p className="text-sm text-primary-700 dark:text-primary-300 font-medium">
                 By using UNIMART, you acknowledge that you have read, understood, and agree to be bound by these Terms &amp; Conditions.
               </p>
               <div className="flex items-center justify-center gap-3 mt-4">

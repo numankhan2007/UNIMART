@@ -404,46 +404,20 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left Side - Visual */}
-      <div className="hidden lg:flex flex-1 items-center justify-center bg-gradient-to-br from-primary-900 to-purple-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 right-20 w-96 h-96 bg-primary-400 rounded-full blur-[100px]" />
-          <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-400 rounded-full blur-[100px]" />
+    <div className="flex items-center justify-center p-6 lg:p-12 font-sans overflow-hidden">
+      {/* Form Card */}
+      <div className="w-full max-w-md glass-card p-8 sm:p-10 relative z-10 scale-in">
+        <div className="text-center mb-8">
+          <Link to="/" className="inline-flex items-center justify-center gap-2 mb-6">
+            <div className="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+              <GraduationCap size={26} className="text-white" />
+            </div>
+          </Link>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">{getTitle()}</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm">{getSubtitle()}</p>
         </div>
-        <div className="relative text-center p-12 glass-card mx-12 max-w-lg border-white/10 bg-white/5">
-          <div className="w-20 h-20 mx-auto rounded-2xl bg-white/10 flex items-center justify-center mb-8 backdrop-blur-md border border-white/20">
-            <span className="text-4xl">🚀</span>
-          </div>
-          <h2 className="text-3xl font-bold mb-4 text-white">Join the Community</h2>
-          <p className="text-white/80 text-lg max-w-sm mx-auto leading-relaxed">
-            Create your account and start trading with students on your campus today.
-          </p>
-          <div className="mt-10 space-y-4 text-left max-w-xs mx-auto">
-            {['Register Number verified accounts', 'Official academic records', 'Secure OTP verification', 'Campus-wide marketplace'].map((feature, i) => (
-              <div key={i} className="flex items-center gap-4 text-white/80 glass-card p-3 border-white/10">
-                <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs shrink-0">✓</span>
-                <span className="text-sm">{feature}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
 
-      {/* Right Side - Form */}
-      <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
-        <div className="w-full max-w-md space-y-6">
-          <div>
-            <Link to="/" className="inline-flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center shadow-lg">
-                <GraduationCap size={22} className="text-white" />
-              </div>
-              <span className="text-2xl font-bold gradient-text">UNIMART</span>
-            </Link>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{getTitle()}</h1>
-            <p className="text-gray-500 dark:text-gray-400 mt-2">{getSubtitle()}</p>
-          </div>
-
+        <div className="space-y-6">
           <>
             {/* ═══════════ PHASE: Enter Register Number ═══════════ */}
             {phase === 'enter_reg' && (
@@ -637,7 +611,7 @@ export default function Register() {
                 <div className="flex items-center gap-2 p-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30">
                   <CheckCircle size={16} className="text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300">
-                    Official Records — Auto-populated from university database
+                    Official Records — Auto-populated
                   </p>
                 </div>
 
@@ -735,7 +709,6 @@ export default function Register() {
                       <Link to="/terms" target="_blank" className="text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                         Terms & Conditions
                       </Link>
-                      {' '}and understand the prohibited items policy.
                     </span>
                   </label>
                   {errors.agreeTerms && <p className="text-sm text-rose-500 ml-7">⚠ {errors.agreeTerms}</p>}
@@ -748,7 +721,7 @@ export default function Register() {
             )}
           </>
 
-          <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
             Already have an account?{' '}
             <Link to="/login" className="text-primary-600 dark:text-primary-400 font-semibold hover:underline">
               Sign In

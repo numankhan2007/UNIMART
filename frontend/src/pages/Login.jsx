@@ -44,112 +44,74 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left Side - Form */}
-      <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
-        <div className="w-full max-w-md space-y-8">
-          {/* Logo */}
-          <div>
-            <Link to="/" className="inline-flex items-center gap-2 mb-8">
-              <div className="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center shadow-lg">
-                <GraduationCap size={22} className="text-white" />
-              </div>
-              <span className="text-2xl font-bold gradient-text">UNIMART</span>
-            </Link>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Welcome back</h1>
-            <p className="text-gray-500 dark:text-gray-400 mt-2">
-              Sign in with your Register Number or Username
-            </p>
-          </div>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <Input
-              label="Register Number or Username"
-              name="identifier"
-              placeholder="Enter your register number or username"
-              value={formData.identifier}
-              onChange={(e) => {
-                setFormData({ ...formData, identifier: e.target.value });
-                setErrors({ ...errors, identifier: '' });
-              }}
-              error={errors.identifier}
-              icon={User}
-              required
-            />
-            <Input
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={(e) => {
-                setFormData({ ...formData, password: e.target.value });
-                setErrors({ ...errors, password: '' });
-              }}
-              error={errors.password}
-              icon={Lock}
-              required
-            />
-
-            <div className="flex items-center justify-between">
-              <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                />
-                Remember me
-              </label>
-              <a href="#" className="text-sm text-primary-600 dark:text-primary-400 hover:underline">
-                Forgot password?
-              </a>
+    <div className="flex items-center justify-center p-6 lg:p-12 font-sans overflow-hidden">
+      {/* Form Card */}
+      <div className="w-full max-w-md glass-card p-8 sm:p-10 relative z-10 scale-in">
+        <div className="text-center mb-8">
+          <Link to="/" className="inline-flex items-center justify-center gap-2 mb-6">
+            <div className="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+              <GraduationCap size={26} className="text-white" />
             </div>
-
-            <Button type="submit" variant="primary" size="lg" fullWidth loading={loading} icon={ArrowRight} iconPosition="right">
-              Sign In
-            </Button>
-          </form>
-
-          <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            Don't have an account?{' '}
-            <Link to="/register" className="text-primary-600 dark:text-primary-400 font-semibold hover:underline">
-              Register
-            </Link>
+          </Link>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Welcome back</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm">
+            Sign in to your university marketplace
           </p>
         </div>
-      </div>
 
-      {/* Right Side - Visual */}
-      <div className="hidden lg:flex flex-1 items-center justify-center bg-gradient-to-br from-primary-900 to-purple-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-20 w-96 h-96 bg-primary-400 rounded-full blur-[100px]" />
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-400 rounded-full blur-[100px]" />
-        </div>
-        <div className="relative text-center p-12 glass-card mx-12 max-w-lg border-white/10 bg-white/5">
-          <div className="w-20 h-20 mx-auto rounded-2xl bg-white/10 flex items-center justify-center mb-8 backdrop-blur-md border border-white/20">
-            <GraduationCap size={40} className="text-white" />
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <Input
+            label="Register Number or Username"
+            name="identifier"
+            placeholder="Enter your register number or username"
+            value={formData.identifier}
+            onChange={(e) => {
+              setFormData({ ...formData, identifier: e.target.value });
+              setErrors({ ...errors, identifier: '' });
+            }}
+            error={errors.identifier}
+            icon={User}
+            required
+          />
+          <Input
+            label="Password"
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+            value={formData.password}
+            onChange={(e) => {
+              setFormData({ ...formData, password: e.target.value });
+              setErrors({ ...errors, password: '' });
+            }}
+            error={errors.password}
+            icon={Lock}
+            required
+          />
+
+          <div className="flex items-center justify-between">
+            <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 cursor-pointer group">
+              <input
+                type="checkbox"
+                className="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 transition-colors"
+              />
+              Remember me
+            </label>
+            <a href="#" className="text-sm text-primary-600 dark:text-primary-400 hover:underline font-medium">
+              Forgot password?
+            </a>
           </div>
-          <h2 className="text-3xl font-bold mb-4 text-white">Student Marketplace</h2>
-          <p className="text-white/80 text-lg max-w-sm mx-auto leading-relaxed">
-            Buy and sell textbooks, electronics, and more with verified students on your campus.
-          </p>
-          <div className="flex items-center justify-center gap-6 mt-10 text-white/80 text-sm">
-            <div className="text-center">
-              <p className="text-2xl font-bold text-white">10K+</p>
-              <p>Students</p>
-            </div>
-            <div className="w-px h-10 bg-white/20" />
-            <div className="text-center">
-              <p className="text-2xl font-bold text-white">50K+</p>
-              <p>Products</p>
-            </div>
-            <div className="w-px h-10 bg-white/20" />
-            <div className="text-center">
-              <p className="text-2xl font-bold text-white">100+</p>
-              <p>Campuses</p>
-            </div>
-          </div>
-        </div>
+
+          <Button type="submit" variant="primary" size="lg" fullWidth loading={loading} icon={ArrowRight} iconPosition="right">
+            Sign In
+          </Button>
+        </form>
+
+        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+          Don't have an account?{' '}
+          <Link to="/register" className="text-primary-600 dark:text-primary-400 font-semibold hover:underline">
+            Register
+          </Link>
+        </p>
       </div>
     </div>
   );
