@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { ShieldCheck, Lock, Building2, Fingerprint, ArrowRight, CheckCircle2 } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
+import { ShieldCheck, Lock, Building2, Fingerprint, ArrowRight, CheckCircle2, Moon, Sun } from "lucide-react";
 
 const TRUST_FEATURES = [
   {
@@ -70,9 +71,20 @@ function TrustCard({ icon: Icon, title, desc, color, bg }) {
 
 export default function Landing() {
   const navigate = useNavigate();
+  const { darkMode, toggleTheme } = useTheme();
 
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    <div className="min-h-screen flex flex-col font-sans relative">
+      {/* Theme Toggle Button */}
+      <div className="absolute top-6 right-6 z-50">
+        <button
+          onClick={toggleTheme}
+          className="p-3 bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-slate-200/50 dark:border-gray-700/50 rounded-full shadow-sm hover:shadow-md transition-all duration-200"
+          title="Toggle Theme"
+        >
+          {darkMode ? <Sun size={20} className="text-amber-500" /> : <Moon size={20} className="text-indigo-500" />}
+        </button>
+      </div>
       <main className="flex-1 relative z-10 flex flex-col items-center w-full max-w-5xl mx-auto px-6">
         
         <section className="w-full pt-32 pb-24 flex flex-col items-center text-center">
