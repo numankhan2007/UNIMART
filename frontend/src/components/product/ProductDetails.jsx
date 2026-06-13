@@ -123,10 +123,10 @@ export default function ProductDetails({ product, onOrder, onBack }) {
           </div>
 
           {/* Description */}
-          <div className="card p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800/80 dark:to-gray-900/50 border border-gray-100 dark:border-gray-700/50 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl group-hover:bg-indigo-500/10 transition-colors" />
+          <div className="glass-card p-6 relative overflow-hidden group hover:shadow-md transition-all">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl group-hover:bg-primary-500/10 transition-colors pointer-events-none" />
             <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-3 uppercase tracking-wider flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+              <div className="w-1.5 h-1.5 rounded-full bg-primary-500" />
               Description
             </h3>
             <p className="text-[15px] text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap relative z-10">
@@ -136,16 +136,16 @@ export default function ProductDetails({ product, onOrder, onBack }) {
 
           {/* Details Grid */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="card p-4 flex items-center gap-4 bg-white/50 dark:bg-gray-800/30 hover:bg-white dark:hover:bg-gray-800 transition-colors shadow-sm border border-gray-100/50 dark:border-gray-700/30 group">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <User size={20} className="text-indigo-500" />
+            <div className="glass-card p-4 flex items-center gap-4 group">
+              <div className="w-12 h-12 rounded-2xl bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <User size={20} className="text-primary-500" />
               </div>
               <div>
                 <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Seller</p>
                 <p className="text-base font-bold text-gray-900 dark:text-white">{sellerUsername}</p>
               </div>
             </div>
-            <div className="card p-4 flex items-center gap-4 bg-white/50 dark:bg-gray-800/30 hover:bg-white dark:hover:bg-gray-800 transition-colors shadow-sm border border-gray-100/50 dark:border-gray-700/30 group">
+            <div className="glass-card p-4 flex items-center gap-4 group">
               <div className="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <MapPin size={20} className="text-purple-500" />
               </div>
@@ -155,7 +155,7 @@ export default function ProductDetails({ product, onOrder, onBack }) {
               </div>
             </div>
             {createdAt && (
-              <div className="card p-4 flex items-center gap-4 bg-white/50 dark:bg-gray-800/30 hover:bg-white dark:hover:bg-gray-800 transition-colors shadow-sm border border-gray-100/50 dark:border-gray-700/30 group">
+              <div className="glass-card p-4 flex items-center gap-4 group">
                 <div className="w-12 h-12 rounded-2xl bg-pink-50 dark:bg-pink-900/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Calendar size={20} className="text-pink-500" />
                 </div>
@@ -166,7 +166,7 @@ export default function ProductDetails({ product, onOrder, onBack }) {
               </div>
             )}
             {condition && (
-              <div className="card p-4 flex items-center gap-4 bg-white/50 dark:bg-gray-800/30 hover:bg-white dark:hover:bg-gray-800 transition-colors shadow-sm border border-gray-100/50 dark:border-gray-700/30 group">
+              <div className="glass-card p-4 flex items-center gap-4 group">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Shield size={20} className="text-emerald-500" />
                 </div>
