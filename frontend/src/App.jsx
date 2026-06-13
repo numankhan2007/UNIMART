@@ -11,6 +11,7 @@ import MobileNav from './components/layout/MobileNav';
 import Toast from './components/common/Toast';
 import AppRoutes from './routes/AppRoutes';
 import { useBackNavigation } from './hooks/useBackNavigation';
+import WebGLBackground from './components/WebGLBackground';
 
 function BackNavigationHandler() {
   useBackNavigation();
@@ -38,8 +39,7 @@ function AppLayout() {
 
       {/* Global Background Orbs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden flex justify-center items-center z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-primary-100/40 dark:bg-primary-900/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-purple-100/40 dark:bg-purple-900/10 rounded-full blur-[100px]" />
+        <WebGLBackground />
       </div>
 
       {!isAuthPage && <Navbar />}

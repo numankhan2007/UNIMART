@@ -9,6 +9,14 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        'display-hero': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'display-hero-mobile': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline-section': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline-card': ['Inter', 'sans-serif'],
+        'body-large': ['Inter', 'sans-serif'],
+        'body-base': ['Inter', 'sans-serif'],
+        'label-caps': ['Inter', 'sans-serif'],
+        'button-text': ['Inter', 'sans-serif'],
       },
       colors: {
         /* ─── Stitch "Unimart Academic Elite" palette ─── */
@@ -45,6 +53,13 @@ export default {
           amber: '#f59e0b',
           rose: '#f43f5e',
         },
+        'surface-white': '#FFFFFF',
+        'surface-soft': '#F4F6FB',
+        'text-primary': '#0B1C30',
+        'text-secondary': '#566074',
+        'primary-container': '#4f46e5',
+        'border-standard': '#E2E8F0',
+        'success-emerald': '#10B981',
       },
       backgroundImage: {
         'gradient-primary': 'linear-gradient(135deg, #4f46e5, #6366f1, #818cf8)',
@@ -115,6 +130,10 @@ export default {
           '60%': { transform: 'scale(1.02)', opacity: '1' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
+        'beam-right': { '0%': { transform: 'translateX(-100%)' }, '100%': { transform: 'translateX(250%)' } },
+        'beam-left': { '0%': { transform: 'translateX(250%)' }, '100%': { transform: 'translateX(-100%)' } },
+        'beam-down': { '0%': { transform: 'translateY(-100%)' }, '100%': { transform: 'translateY(250%)' } },
+        'beam-up': { '0%': { transform: 'translateY(250%)' }, '100%': { transform: 'translateY(-100%)' } },
       },
       backdropBlur: {
         xs: '2px',
