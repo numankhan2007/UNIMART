@@ -96,11 +96,11 @@ export default function Login() {
               <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  className="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                 />
                 Remember me
               </label>
-              <a href="#" className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
+              <a href="#" className="text-sm text-primary-600 dark:text-primary-400 hover:underline">
                 Forgot password?
               </a>
             </div>
@@ -112,7 +112,7 @@ export default function Login() {
 
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
             Don't have an account?{' '}
-            <Link to="/register" className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">
+            <Link to="/register" className="text-primary-600 dark:text-primary-400 font-semibold hover:underline">
               Register
             </Link>
           </p>
@@ -120,20 +120,20 @@ export default function Login() {
       </div>
 
       {/* Right Side - Visual */}
-      <div className="hidden lg:flex flex-1 items-center justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl" />
+      <div className="hidden lg:flex flex-1 items-center justify-center bg-gradient-to-br from-primary-900 to-purple-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 left-20 w-96 h-96 bg-primary-400 rounded-full blur-[100px]" />
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-400 rounded-full blur-[100px]" />
         </div>
-        <div className="relative text-center text-white p-12">
-          <div className="text-8xl mb-8">
-            🎓
+        <div className="relative text-center p-12 glass-card mx-12 max-w-lg border-white/10 bg-white/5">
+          <div className="w-20 h-20 mx-auto rounded-2xl bg-white/10 flex items-center justify-center mb-8 backdrop-blur-md border border-white/20">
+            <GraduationCap size={40} className="text-white" />
           </div>
-          <h2 className="text-4xl font-bold mb-4">Student Marketplace</h2>
-          <p className="text-white/80 text-lg max-w-sm mx-auto">
+          <h2 className="text-3xl font-bold mb-4 text-white">Student Marketplace</h2>
+          <p className="text-white/80 text-lg max-w-sm mx-auto leading-relaxed">
             Buy and sell textbooks, electronics, and more with verified students on your campus.
           </p>
-          <div className="flex items-center justify-center gap-6 mt-8 text-white/60 text-sm">
+          <div className="flex items-center justify-center gap-6 mt-10 text-white/80 text-sm">
             <div className="text-center">
               <p className="text-2xl font-bold text-white">10K+</p>
               <p>Students</p>
