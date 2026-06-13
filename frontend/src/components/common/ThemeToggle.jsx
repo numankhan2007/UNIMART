@@ -20,7 +20,7 @@ export default function ThemeToggle({ className = '' }) {
         style={{ transform: darkMode ? 'rotate(180deg)' : 'rotate(0deg)' }}
       >
         {darkMode ? (
-          <Moon size={20} className="text-indigo-400" />
+          <Moon size={20} className="text-primary-400" />
         ) : (
           <Sun size={20} className="text-amber-500" />
         )}

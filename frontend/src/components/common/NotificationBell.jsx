@@ -150,15 +150,15 @@ export default function NotificationBell() {
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50">
+        <div className="absolute right-0 mt-2 w-80 sm:w-96 glass-card overflow-hidden z-50 animate-slide-down">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-white/50 dark:bg-gray-800/50 backdrop-blur-md">
             <h3 className="font-semibold text-gray-900 dark:text-white">Notifications</h3>
             <div className="flex items-center gap-2">
               {unreadCount > 0 && (
                 <button
                   onClick={handleMarkAllAsRead}
-                  className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
+                  className="text-xs text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1"
                 >
                   <CheckCheck size={14} />
                   Mark all read
@@ -189,8 +189,8 @@ export default function NotificationBell() {
                   <div
                     key={notification.id}
                     onClick={() => handleNotificationClick(notification)}
-                    className={`flex items-start gap-3 px-4 py-3 border-b border-gray-100 dark:border-gray-700 cursor-pointer transition-all hover:bg-gray-50 dark:hover:bg-gray-700/50 ${
-                      !notification.is_read ? 'bg-indigo-50/50 dark:bg-indigo-900/10' : ''
+                    className={`flex items-start gap-3 px-4 py-3 border-b border-gray-100 dark:border-gray-800 cursor-pointer transition-all hover:bg-white dark:hover:bg-gray-700/80 ${
+                      !notification.is_read ? 'bg-primary-50/50 dark:bg-primary-900/10' : ''
                     }`}
                   >
                     {/* Icon */}
@@ -205,7 +205,7 @@ export default function NotificationBell() {
                           {notification.title}
                         </p>
                         {!notification.is_read && (
-                          <span className="flex-shrink-0 w-2 h-2 bg-indigo-500 rounded-full mt-1.5"></span>
+                          <span className="flex-shrink-0 w-2 h-2 bg-primary-500 rounded-full mt-1.5 shadow-[0_0_8px_rgba(var(--primary-500),0.5)]"></span>
                         )}
                       </div>
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-2">
@@ -217,11 +217,11 @@ export default function NotificationBell() {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex-shrink-0 flex items-center gap-1">
+                    <div className="flex-shrink-0 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       {!notification.is_read && (
                         <button
                           onClick={(e) => handleMarkAsRead(notification.id, e)}
-                          className="p-1.5 text-gray-400 hover:text-green-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                          className="p-1.5 text-gray-400 hover:text-green-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                           title="Mark as read"
                         >
                           <Check size={14} />
@@ -229,7 +229,7 @@ export default function NotificationBell() {
                       )}
                       <button
                         onClick={(e) => handleDelete(notification.id, e)}
-                        className="p-1.5 text-gray-400 hover:text-red-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="p-1.5 text-gray-400 hover:text-red-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                         title="Delete"
                       >
                         <Trash2 size={14} />
@@ -243,13 +243,13 @@ export default function NotificationBell() {
 
           {/* Footer */}
           {notifications.length > 0 && (
-            <div className="px-4 py-2 border-t border-gray-200 dark:border-gray-700">
+            <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-800 bg-white/50 dark:bg-gray-800/50 backdrop-blur-md">
               <button
                 onClick={() => {
                   navigate('/orders');
                   setIsOpen(false);
                 }}
-                className="w-full text-center text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
+                className="w-full text-center text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
               >
                 View all orders
               </button>
