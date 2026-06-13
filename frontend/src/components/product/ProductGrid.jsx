@@ -3,14 +3,14 @@ import ProductCard from './ProductCard';
 export default function ProductGrid({ products, loading = false }) {
   if (loading) {
     return (
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
         {[...Array(8)].map((_, i) => (
-          <div key={i} className="card overflow-hidden animate-pulse">
-            <div className="aspect-[3/4] md:aspect-video bg-gray-200 dark:bg-gray-700" />
+          <div key={i} className="glass-card overflow-hidden animate-pulse">
+            <div className="aspect-square bg-gray-100 dark:bg-gray-800" />
             <div className="p-4 space-y-3">
-              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-lg w-3/4" />
-              <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded-lg w-full" />
-              <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded-lg w-1/2" />
+              <div className="h-4 bg-gray-100 dark:bg-gray-800 rounded-md w-3/4" />
+              <div className="h-3 bg-gray-100 dark:bg-gray-800 rounded-md w-full" />
+              <div className="h-3 bg-gray-100 dark:bg-gray-800 rounded-md w-1/2" />
             </div>
           </div>
         ))}
@@ -29,7 +29,7 @@ export default function ProductGrid({ products, loading = false }) {
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
       {products.map((product, index) => (
         <ProductCard key={product.id} product={product} index={index} />
       ))}

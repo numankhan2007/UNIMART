@@ -114,39 +114,45 @@ export default function Home() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-indigo-950 to-purple-950 py-16 lg:py-24">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-pink-500/10 rounded-full blur-3xl" />
-        </div>
+      {/* Premium Minimalist Hero Section */}
+      <section className="relative overflow-hidden bg-[#FAFBFC] dark:bg-[#0A0A0F] pt-12 pb-20 lg:pt-20 lg:pb-28">
+        {/* Subtle blur orbs for depth */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-100/50 dark:bg-primary-900/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-100/50 dark:bg-purple-900/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
         <div className="section-padding relative">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm text-white/80 mb-6">
-              <Sparkles size={14} className="text-yellow-400" />
-              Student-Only Marketplace
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-white dark:bg-white/5 border border-gray-200/60 dark:border-white/10 text-primary-600 dark:text-primary-400 mb-8 shadow-sm">
+              <Sparkles size={14} className="text-amber-500" />
+              Your Campus Marketplace
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-[1.15] tracking-tight">
               Buy & Sell with{' '}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+              <span className="gradient-text">
                 Campus Students
               </span>
             </h1>
-            <p className="text-lg text-gray-300 mt-6 max-w-xl mx-auto">
-              The trusted marketplace for university students. Trade textbooks, electronics, notes, and more — safely and privately.
+            
+            <p className="text-lg text-gray-500 dark:text-gray-400 mt-6 max-w-xl mx-auto leading-relaxed">
+              The premium marketplace designed exclusively for university students. Trade textbooks, electronics, and essentials — safely and privately.
             </p>
-
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-3xl mx-auto">
+          {/* Floating Glass Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-16 max-w-4xl mx-auto">
             {stats.map((stat, i) => (
-              <div key={i} className="text-center p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl">
-                <stat.icon size={22} className="mx-auto mb-2 text-indigo-400" />
-                <p className="text-2xl font-bold text-white">{stat.value}</p>
-                <p className="text-xs text-gray-400 mt-1">{stat.label}</p>
+              <div 
+                key={i} 
+                className="glass-card p-5 sm:p-6 text-center group"
+                style={{ animation: `slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.1}s both` }}
+              >
+                <div className={`w-12 h-12 mx-auto rounded-2xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 
+                  bg-${stat.color}-50 dark:bg-${stat.color}-900/20 text-${stat.color}-600 dark:text-${stat.color}-400`}>
+                  <stat.icon size={22} />
+                </div>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">{stat.value}</p>
+                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 font-medium">{stat.label}</p>
               </div>
             ))}
           </div>

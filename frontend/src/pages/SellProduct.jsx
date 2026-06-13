@@ -146,7 +146,7 @@ export default function SellProduct() {
                 </div>
               ))}
               {previewImages.length < 4 && (
-                <label className="aspect-square rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all">
+                <label className="aspect-square rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-primary-400 hover:bg-primary-50/50 dark:hover:bg-primary-900/10 transition-all">
                   <Camera size={24} className="text-gray-400" />
                   <span className="text-xs text-gray-400">Add Photo</span>
                   <input
@@ -274,11 +274,11 @@ export default function SellProduct() {
           </div>
 
           {/* Listing Preview Notice */}
-          <div className="card p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/10 dark:to-purple-900/10 border-indigo-200 dark:border-indigo-800/30">
-            <p className="text-sm text-indigo-700 dark:text-indigo-300">
+          <div className="glass-card p-4 bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/10 dark:to-purple-900/10 border-primary-200 dark:border-primary-800/30">
+            <p className="text-sm text-primary-700 dark:text-primary-300">
               <strong>📍 Listing Campus:</strong> {user?.campus || 'Your Campus'}
             </p>
-            <p className="text-xs text-indigo-600/70 dark:text-indigo-400/70 mt-1">
+            <p className="text-xs text-primary-600/70 dark:text-primary-400/70 mt-1">
               Your product will be visible to all students. Your email and phone will remain private.
             </p>
           </div>

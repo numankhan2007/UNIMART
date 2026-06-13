@@ -33,10 +33,10 @@ function AppLayout() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-surface dark:bg-[#0a0a0f]">
       <BackNavigationHandler />
       {!isAuthPage && <Navbar />}
-      <main className={`flex-1 ${!isAuthPage ? 'pt-16 pb-16 md:pb-0' : ''}`}>
+      <main className={`flex-1 ${!isAuthPage ? 'pt-20 pb-16 md:pb-0' : ''}`}>
         <AppRoutes />
       </main>
       {!isAuthPage && <Footer />}

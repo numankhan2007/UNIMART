@@ -163,12 +163,12 @@ export default function Dashboard() {
     <div className="section-padding page-padding">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Profile Header */}
-        <div className="card p-6 lg:p-8 relative">
+        <div className="glass-card p-6 lg:p-8 relative">
           {/* Info Icon — absolute positioned */}
           <div ref={infoRef} className="absolute" style={{ top: '15px', right: '15px' }}>
             <button
               onClick={() => setShowInfoPopover(!showInfoPopover)}
-              className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
+              className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-primary-100 dark:hover:bg-primary-900/30 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-all shadow-sm"
               title="Account Info"
             >
               <Info size={16} />
@@ -176,10 +176,10 @@ export default function Dashboard() {
 
             {/* Info Popover */}
             {showInfoPopover && (
-              <div className="absolute right-0 top-10 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 z-50">
-                  <div className="absolute -top-2 right-3 w-4 h-4 bg-white dark:bg-gray-800 border-l border-t border-gray-200 dark:border-gray-700 rotate-45" />
+              <div className="absolute right-0 top-10 w-64 glass-card p-4 z-50 animate-slide-down">
+                  <div className="absolute -top-2 right-3 w-4 h-4 bg-white dark:bg-gray-800 border-l border-t border-gray-100 dark:border-gray-700 rotate-45" />
                   <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                    <Info size={14} className="text-indigo-500" />
+                    <Info size={14} className="text-primary-500" />
                     Account Info
                   </h4>
                   <div className="space-y-2.5">
@@ -202,7 +202,7 @@ export default function Dashboard() {
           <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-5 sm:gap-6 relative">
             {/* Avatar with upload */}
             <div className="relative group shrink-0">
-              <div className="w-24 h-24 sm:w-20 sm:h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-3xl sm:text-2xl font-bold shadow-lg shadow-indigo-500/20 overflow-hidden">
+              <div className="w-24 h-24 sm:w-20 sm:h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-3xl sm:text-2xl font-bold shadow-lg shadow-primary-500/20 overflow-hidden">
                 {user?.profilePictureUrl ? (
                   <img src={user.profilePictureUrl} alt="" className="w-full h-full object-cover" />
                 ) : (
@@ -251,7 +251,7 @@ export default function Dashboard() {
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-2 mt-3 sm:mt-2 text-sm text-gray-500 dark:text-gray-400">
                 {user?.university && (
                   <span className="flex items-center gap-1.5">
-                    <GraduationCap size={14} className="shrink-0 text-indigo-500" />
+                    <GraduationCap size={14} className="shrink-0 text-primary-500" />
                     <span className="truncate max-w-[200px] sm:max-w-none">{user.university}</span>
                   </span>
                 )}
@@ -272,21 +272,21 @@ export default function Dashboard() {
               {/* Contact & ID Info */}
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 mt-3 sm:mt-2.5 text-xs text-gray-500 dark:text-gray-400">
                 {user?.personalMailId && (
-                  <span className="flex items-center gap-1.5 bg-gray-50/80 dark:bg-gray-800/80 px-2.5 py-1.5 rounded-lg border border-gray-100 dark:border-gray-700/50">
+                  <span className="flex items-center gap-1.5 bg-white dark:bg-white/5 px-2.5 py-1.5 rounded-lg border border-gray-200/60 dark:border-white/10 shadow-sm">
                     <Mail size={12} className="text-gray-400 shrink-0" />
                     <span className="truncate max-w-[180px] sm:max-w-none">{user.personalMailId}</span>
                   </span>
                 )}
                 {user?.phoneNumber && (
-                  <span className="flex items-center gap-1.5 bg-gray-50/80 dark:bg-gray-800/80 px-2.5 py-1.5 rounded-lg border border-gray-100 dark:border-gray-700/50 shrink-0 whitespace-nowrap">
+                  <span className="flex items-center gap-1.5 bg-white dark:bg-white/5 px-2.5 py-1.5 rounded-lg border border-gray-200/60 dark:border-white/10 shadow-sm shrink-0 whitespace-nowrap">
                     <Phone size={12} className="text-gray-400 shrink-0" />
                     +91 {user.phoneNumber}
                   </span>
                 )}
                 {user?.studentId && (
-                  <span className="flex items-center gap-1.5 bg-indigo-50 dark:bg-indigo-500/10 px-2.5 py-1.5 rounded-lg border border-indigo-100 dark:border-indigo-500/20 shrink-0" title="Register Number">
-                    <GraduationCap size={12} className="text-indigo-600 dark:text-indigo-400 shrink-0" />
-                    <span className="font-semibold text-indigo-700 dark:text-indigo-400">{user.studentId}</span>
+                  <span className="flex items-center gap-1.5 bg-primary-50 dark:bg-primary-500/10 px-2.5 py-1.5 rounded-lg border border-primary-100 dark:border-primary-500/20 shrink-0" title="Register Number">
+                    <GraduationCap size={12} className="text-primary-600 dark:text-primary-400 shrink-0" />
+                    <span className="font-semibold text-primary-700 dark:text-primary-400">{user.studentId}</span>
                   </span>
                 )}
               </div>
@@ -294,18 +294,18 @@ export default function Dashboard() {
           </div>
 
           {/* Stats — 3 columns */}
-          <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
-            <div className="text-center">
-              <div className="w-10 h-10 mx-auto rounded-xl bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center mb-2">
-                <ShoppingCart size={18} className="text-indigo-500" />
+          <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100/60 dark:border-gray-800/60">
+            <div className="text-center group">
+              <div className="w-10 h-10 mx-auto rounded-xl bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                <ShoppingCart size={18} className="text-primary-500" />
               </div>
               <p className="text-xl font-bold text-gray-900 dark:text-white">
                 {loadingOrders ? <Loader2 size={18} className="animate-spin mx-auto" /> : buyOrders.length}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">Purchases</p>
             </div>
-            <div className="text-center">
-              <div className="w-10 h-10 mx-auto rounded-xl bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center mb-2">
+            <div className="text-center group">
+              <div className="w-10 h-10 mx-auto rounded-xl bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <Package size={18} className="text-purple-500" />
               </div>
               <p className="text-xl font-bold text-gray-900 dark:text-white">
@@ -313,8 +313,8 @@ export default function Dashboard() {
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">Sales</p>
             </div>
-            <div className="text-center">
-              <div className="w-10 h-10 mx-auto rounded-xl bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center mb-2">
+            <div className="text-center group">
+              <div className="w-10 h-10 mx-auto rounded-xl bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <Tag size={18} className="text-emerald-500" />
               </div>
               <p className="text-xl font-bold text-gray-900 dark:text-white">
@@ -334,7 +334,7 @@ export default function Dashboard() {
           <div className="mt-4">
             {loadingOrders ? (
               <div className="flex items-center justify-center py-12">
-                <Loader2 className="w-6 h-6 animate-spin text-indigo-500" />
+                <Loader2 className="w-6 h-6 animate-spin text-primary-500" />
               </div>
             ) : activeTab === 'buy' ? (
               <BuyHistory
@@ -366,11 +366,11 @@ export default function Dashboard() {
       {/* ═══════════ EDIT PROFILE MODAL ═══════════ */}
       {showEditModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md"
           onClick={() => setShowEditModal(false)}
         >
           <div
-            className="w-full max-w-lg bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
+            className="w-full max-w-lg glass-card overflow-hidden animate-slide-up"
             onClick={(e) => e.stopPropagation()}
           >
               {/* Modal Header */}

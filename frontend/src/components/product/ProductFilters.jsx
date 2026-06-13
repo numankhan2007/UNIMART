@@ -89,8 +89,8 @@ export default function ProductFilters({ filters, onFilterChange, onClear, total
 
       {/* Expandable Filter Panel */}
       {showFilters && (
-        <div className="overflow-hidden">
-            <div className="card p-5 space-y-5">
+        <div className="overflow-hidden animate-slide-down">
+            <div className="glass-card p-6 space-y-6">
               {/* Categories */}
               <div>
                 <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Category</h4>

@@ -406,21 +406,23 @@ export default function Register() {
   return (
     <div className="min-h-screen flex">
       {/* Left Side - Visual */}
-      <div className="hidden lg:flex flex-1 items-center justify-center bg-gradient-to-br from-purple-600 via-pink-600 to-rose-500 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 right-20 w-72 h-72 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl" />
+      <div className="hidden lg:flex flex-1 items-center justify-center bg-gradient-to-br from-primary-900 to-purple-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 right-20 w-96 h-96 bg-primary-400 rounded-full blur-[100px]" />
+          <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-400 rounded-full blur-[100px]" />
         </div>
-        <div className="relative text-center text-white p-12">
-          <div className="text-8xl mb-8">🚀</div>
-          <h2 className="text-4xl font-bold mb-4">Join the Community</h2>
-          <p className="text-white/80 text-lg max-w-sm mx-auto">
+        <div className="relative text-center p-12 glass-card mx-12 max-w-lg border-white/10 bg-white/5">
+          <div className="w-20 h-20 mx-auto rounded-2xl bg-white/10 flex items-center justify-center mb-8 backdrop-blur-md border border-white/20">
+            <span className="text-4xl">🚀</span>
+          </div>
+          <h2 className="text-3xl font-bold mb-4 text-white">Join the Community</h2>
+          <p className="text-white/80 text-lg max-w-sm mx-auto leading-relaxed">
             Create your account and start trading with students on your campus today.
           </p>
-          <div className="mt-8 space-y-3 text-left max-w-xs mx-auto">
+          <div className="mt-10 space-y-4 text-left max-w-xs mx-auto">
             {['Register Number verified accounts', 'Official academic records', 'Secure OTP verification', 'Campus-wide marketplace'].map((feature, i) => (
-              <div key={i} className="flex items-center gap-3 text-white/80">
-                <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs">✓</span>
+              <div key={i} className="flex items-center gap-4 text-white/80 glass-card p-3 border-white/10">
+                <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs shrink-0">✓</span>
                 <span className="text-sm">{feature}</span>
               </div>
             ))}
@@ -726,11 +728,11 @@ export default function Register() {
                       type="checkbox"
                       checked={agreeTerms}
                       onChange={(e) => { setAgreeTerms(e.target.checked); setErrors({ ...errors, agreeTerms: '' }); }}
-                      className="mt-1 w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="mt-1 w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                     />
                     <span className="text-sm text-gray-600 dark:text-gray-400">
                       I agree to the{' '}
-                      <Link to="/terms" target="_blank" className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">
+                      <Link to="/terms" target="_blank" className="text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                         Terms & Conditions
                       </Link>
                       {' '}and understand the prohibited items policy.
@@ -748,7 +750,7 @@ export default function Register() {
 
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
             Already have an account?{' '}
-            <Link to="/login" className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">
+            <Link to="/login" className="text-primary-600 dark:text-primary-400 font-semibold hover:underline">
               Sign In
             </Link>
           </p>

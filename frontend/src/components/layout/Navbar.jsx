@@ -109,15 +109,25 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 glass border-b border-white/10 dark:border-gray-800/50">
-      <div className="section-padding">
-        <div className="flex items-center justify-between h-16">
+    <nav className="fixed top-0 left-0 right-0 z-40">
+      {/* Floating glass container */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-3">
+        <div
+          className="flex items-center justify-between h-14 px-4 sm:px-6 rounded-2xl"
+          style={{
+            background: 'var(--glass-bg)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            border: '1px solid var(--glass-border)',
+            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.03)',
+          }}
+        >
           {/* Logo */}
-          <Link to="/home" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-9 h-9 gradient-bg rounded-xl flex items-center justify-center shadow-lg">
-              <ShoppingBag size={20} className="text-white" />
+          <Link to="/home" className="flex items-center gap-2.5 flex-shrink-0">
+            <div className="w-8 h-8 gradient-bg rounded-xl flex items-center justify-center shadow-button">
+              <ShoppingBag size={17} className="text-white" />
             </div>
-            <span className="text-xl font-bold gradient-text hidden sm:block">
+            <span className="text-lg font-bold gradient-text hidden sm:block tracking-tight">
               UNIMART
             </span>
           </Link>
@@ -130,22 +140,23 @@ export default function Navbar() {
             >
               <div className="relative w-full">
                 <Search
-                  size={18}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  size={16}
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
                 />
                 <input
                   type="text"
                   placeholder="Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-100 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all"
+                  className="w-full pl-10 pr-4 py-2 bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 rounded-xl text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500/50 transition-all"
+                  style={{ boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.04)' }}
                 />
               </div>
             </form>
           )}
 
           {/* Right Side */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             {isAuthenticated ? (
               <>
                 {/* Nav Links - Desktop */}
@@ -154,14 +165,14 @@ export default function Navbar() {
                     <Link
                       key={link.label}
                       to={link.to}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300
+                      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200
                         ${
                           isLinkActive(link)
-                            ? "gradient-bg text-white shadow-md"
-                            : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                            ? "gradient-bg text-white shadow-button"
+                            : "text-gray-600 dark:text-gray-400 hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
                         }`}
                     >
-                      <link.icon size={16} />
+                      <link.icon size={15} />
                       {link.label}
                     </Link>
                   ))}
@@ -178,16 +189,16 @@ export default function Navbar() {
                       setTimeout(() => searchInputRef.current?.focus(), 300);
                     }
                   }}
-                  className="md:hidden p-2 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                  className="md:hidden p-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-all"
                 >
-                  <Search size={22} />
+                  <Search size={20} />
                 </button>
 
                 {/* Profile Dropdown */}
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setShowDropdown(!showDropdown)}
-                    className="flex items-center gap-2 p-1.5 pr-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                    className="flex items-center gap-2 p-1.5 pr-3 rounded-xl hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-all"
                   >
                     <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white text-xs font-bold overflow-hidden">
                       {user?.profilePictureUrl ? (
@@ -203,26 +214,35 @@ export default function Navbar() {
                     <span className="hidden lg:flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300">
                       {user?.username}
                       {user?.verified && (
-                        <BadgeCheck size={16} className="text-blue-500" />
+                        <BadgeCheck size={15} className="text-primary-500" />
                       )}
                     </span>
                     <ChevronDown
-                      size={14}
+                      size={13}
                       className={`hidden lg:block text-gray-400 transition-transform duration-200 ${showDropdown ? "rotate-180" : ""}`}
                     />
                   </button>
 
                   {showDropdown && (
-                    <div className="absolute right-0 top-full mt-2 w-64 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
+                    <div
+                      className="absolute right-0 top-full mt-2 w-64 rounded-2xl overflow-hidden scale-in"
+                      style={{
+                        background: 'var(--glass-bg)',
+                        backdropFilter: 'blur(24px)',
+                        WebkitBackdropFilter: 'blur(24px)',
+                        border: '1px solid var(--glass-border)',
+                        boxShadow: '0 16px 48px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06)',
+                      }}
+                    >
                         {/* Profile Header */}
-                        <div className="px-4 py-3 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border-b border-gray-100 dark:border-gray-700">
+                        <div className="px-4 py-3 border-b border-gray-100/60 dark:border-white/[0.06] bg-gradient-to-r from-primary-50/50 to-purple-50/50 dark:from-primary-900/10 dark:to-purple-900/10">
                           <div className="flex items-center gap-1.5">
                             <p className="text-sm font-bold text-gray-900 dark:text-white">
                               {user?.username}
                             </p>
                             {user?.verified && (
-                              <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-1.5 py-0.5 rounded-full">
-                                <BadgeCheck size={12} />
+                              <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 px-1.5 py-0.5 rounded-full">
+                                <BadgeCheck size={11} />
                                 Verified
                               </span>
                             )}
@@ -230,13 +250,13 @@ export default function Navbar() {
                           <p className="text-xs text-gray-500 dark:text-gray-400">
                             {user?.campus}
                           </p>
-                          <p className="text-xs text-indigo-600 dark:text-indigo-400 font-mono mt-1">
+                          <p className="text-xs text-primary-600 dark:text-primary-400 font-mono mt-0.5">
                             {user?.studentId}
                           </p>
                         </div>
 
                         {/* Menu Items */}
-                        <div className="py-2">
+                        <div className="py-1.5">
                           {dropdownItems.map((item, index) => (
                             <button
                               key={index}
@@ -244,36 +264,36 @@ export default function Navbar() {
                                 setShowDropdown(false);
                                 item.action();
                               }}
-                              className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                              className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-colors"
                             >
-                              <item.icon size={16} className="text-gray-400" />
+                              <item.icon size={15} className="text-gray-400" />
                               {item.label}
                             </button>
                           ))}
                         </div>
 
                         {/* Theme Toggle */}
-                        <div className="px-4 py-2 border-t border-gray-100 dark:border-gray-700">
+                        <div className="px-4 py-2 border-t border-gray-100/60 dark:border-white/[0.06]">
                           <button
                             onClick={toggleTheme}
-                            className="w-full flex items-center gap-3 px-0 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                            className="w-full flex items-center gap-3 px-0 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                           >
                             {darkMode ? (
-                              <Sun size={16} className="text-amber-500" />
+                              <Sun size={15} className="text-amber-500" />
                             ) : (
-                              <Moon size={16} className="text-indigo-500" />
+                              <Moon size={15} className="text-primary-500" />
                             )}
                             {darkMode ? "Light Mode" : "Dark Mode"}
                           </button>
                         </div>
 
                         {/* Logout */}
-                        <div className="px-4 py-2 border-t border-gray-100 dark:border-gray-700">
+                        <div className="px-4 py-2 border-t border-gray-100/60 dark:border-white/[0.06]">
                           <button
                             onClick={handleLogout}
                             className="w-full flex items-center gap-3 px-0 py-2 text-sm text-rose-600 dark:text-rose-400 hover:text-rose-700 transition-colors"
                           >
-                            <LogOut size={16} />
+                            <LogOut size={15} />
                             Logout
                           </button>
                         </div>
@@ -284,32 +304,32 @@ export default function Navbar() {
                 {/* Mobile Menu Toggle */}
                 <button
                   onClick={() => setShowMobileMenu(!showMobileMenu)}
-                  className="md:hidden p-2 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                  className="md:hidden p-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-all"
                 >
-                  {showMobileMenu ? <X size={22} /> : <Menu size={22} />}
+                  {showMobileMenu ? <X size={20} /> : <Menu size={20} />}
                 </button>
               </>
             ) : (
               <div className="flex items-center gap-2">
                 <button
                   onClick={toggleTheme}
-                  className="p-2 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                  className="p-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-all"
                 >
                   {darkMode ? (
-                    <Sun size={20} className="text-amber-500" />
+                    <Sun size={18} className="text-amber-500" />
                   ) : (
-                    <Moon size={20} className="text-indigo-500" />
+                    <Moon size={18} className="text-primary-500" />
                   )}
                 </button>
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className="btn-primary text-sm !py-2 !px-5"
+                  className="btn-primary text-sm !py-2 !px-5 !rounded-xl"
                 >
                   Register
                 </Link>
@@ -320,13 +340,22 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {showMobileMenu && isAuthenticated && (
-          <div className="md:hidden overflow-hidden border-t border-gray-100 dark:border-gray-800">
+          <div
+            className="md:hidden mt-2 rounded-2xl overflow-hidden fade-in"
+            style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              border: '1px solid var(--glass-border)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+            }}
+          >
               {/* Mobile Search */}
               <form onSubmit={handleSearch} className="p-3">
                 <div className="relative">
                   <Search
-                    size={18}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                    size={16}
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
                   />
                   <input
                     ref={searchInputRef}
@@ -334,7 +363,8 @@ export default function Navbar() {
                     placeholder="Search products..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 bg-gray-100 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl text-sm"
+                    className="w-full pl-10 pr-4 py-2.5 bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                    style={{ boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.04)' }}
                   />
                 </div>
               </form>
@@ -348,11 +378,11 @@ export default function Navbar() {
                     className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all
                       ${
                         isLinkActive(link)
-                          ? "gradient-bg text-white"
-                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                          ? "gradient-bg text-white shadow-button"
+                          : "text-gray-600 dark:text-gray-400 hover:bg-black/[0.04] dark:hover:bg-white/[0.04]"
                       }`}
                   >
-                    <link.icon size={18} />
+                    <link.icon size={17} />
                     {link.label}
                   </Link>
                 ))}

@@ -156,7 +156,7 @@ export default function Orders() {
             {filteredOrders.map((order, i) => {
               const isBuyer = order._role === 'buyer';
               return (
-                <div key={order.id} className="card p-5">
+                <div key={order.id} className="glass-card p-5">
                   <div className="flex flex-col sm:flex-row gap-4">
                     <img
                       src={getOrderImage(order)}
