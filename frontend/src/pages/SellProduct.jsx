@@ -61,7 +61,6 @@ export default function SellProduct() {
     try {
       let imageUrls = [];
 
-      // Upload images to Cloudinary if any
       if (formData.images.length > 0) {
         setUploadingImages(true);
         const uploadFormData = new FormData();
@@ -76,7 +75,6 @@ export default function SellProduct() {
         setUploadingImages(false);
       }
 
-      // Build description with condition info
       const fullDescription = formData.condition
         ? `[Condition: ${formData.condition}]\n\n${formData.description}`
         : formData.description;
@@ -118,23 +116,23 @@ export default function SellProduct() {
 
   return (
     <div className="section-padding page-padding">
-      <div className="max-w-2xl mx-auto space-y-8 glass-card p-6 sm:p-10 scale-in">
+      <div className="max-w-2xl mx-auto bento-cell hover:!transform-none bento-animate p-6 sm:p-10">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Sell a Product</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>Sell a Product</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">
             List your item for other students on {user?.campus || 'campus'}.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 mt-8">
           {/* Image Upload */}
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Product Images <span className="text-gray-400">(max 4)</span>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+              Product Images <span className="text-slate-400">(max 4)</span>
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {previewImages.map((img, i) => (
-                <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 group bg-white dark:bg-gray-800">
+                <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-[var(--bento-border)] group bg-white dark:bg-slate-800">
                   <img src={img} alt="" className="w-full h-full object-contain p-3" />
                   <button
                     type="button"
@@ -146,16 +144,10 @@ export default function SellProduct() {
                 </div>
               ))}
               {previewImages.length < 4 && (
-                <label className="aspect-square rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-primary-400 hover:bg-primary-50/50 dark:hover:bg-primary-900/10 transition-all">
-                  <Camera size={24} className="text-gray-400" />
-                  <span className="text-xs text-gray-400">Add Photo</span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={handleImageUpload}
-                    className="hidden"
-                  />
+                <label className="aspect-square rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-600 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all">
+                  <Camera size={24} className="text-slate-400" />
+                  <span className="text-xs text-slate-400">Add Photo</span>
+                  <input type="file" accept="image/*" multiple onChange={handleImageUpload} className="hidden" />
                 </label>
               )}
             </div>
@@ -175,11 +167,11 @@ export default function SellProduct() {
 
           {/* Description */}
           <div className="space-y-1.5">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
               Description <span className="text-rose-500">*</span>
             </label>
             <div className="relative">
-              <FileText size={18} className="absolute left-3 top-3 text-gray-400" />
+              <FileText size={18} className="absolute left-3 top-3 text-slate-400" />
               <textarea
                 placeholder="Describe your product, condition, and what's included..."
                 value={formData.description}
@@ -193,35 +185,21 @@ export default function SellProduct() {
 
           {/* Price Section */}
           <div className="space-y-3">
-            {/* Free Toggle */}
             <label className="flex items-center gap-3 cursor-pointer group">
-              <div className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${isFree ? 'bg-emerald-500' : 'bg-gray-300 dark:bg-gray-600'}`}>
+              <div className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${isFree ? 'bg-emerald-500' : 'bg-slate-300 dark:bg-slate-600'}`}>
                 <div className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${isFree ? 'translate-x-6' : 'translate-x-0'}`} />
               </div>
               <div className="flex items-center gap-2">
-                <Gift size={18} className={`${isFree ? 'text-emerald-500' : 'text-gray-400'} transition-colors`} />
-                <span className={`text-sm font-medium ${isFree ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'} transition-colors`}>
+                <Gift size={18} className={`${isFree ? 'text-emerald-500' : 'text-slate-400'} transition-colors`} />
+                <span className={`text-sm font-medium ${isFree ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-600 dark:text-slate-400'} transition-colors`}>
                   Give away for free
                 </span>
               </div>
               <input type="checkbox" checked={isFree} onChange={toggleFree} className="hidden" />
             </label>
 
-            {/* Price Input */}
             {!isFree && (
-              <Input
-                label="Price (₹)"
-                name="price"
-                type="number"
-                placeholder="0"
-                value={formData.price}
-                onChange={(e) => updateField('price', e.target.value)}
-                error={errors.price}
-                icon={IndianRupee}
-                required
-                min="1"
-                step="1"
-              />
+              <Input label="Price (₹)" name="price" type="number" placeholder="0" value={formData.price} onChange={(e) => updateField('price', e.target.value)} error={errors.price} icon={IndianRupee} required min="1" step="1" />
             )}
             {isFree && (
               <div className="flex items-center gap-2 p-3 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30">
@@ -236,16 +214,12 @@ export default function SellProduct() {
           {/* Category & Condition Row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Category <span className="text-rose-500">*</span>
               </label>
               <div className="relative">
-                <Layers size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                <select
-                  value={formData.category}
-                  onChange={(e) => updateField('category', e.target.value)}
-                  className="input-field pl-10 appearance-none"
-                >
+                <Layers size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <select value={formData.category} onChange={(e) => updateField('category', e.target.value)} className="input-field pl-10 appearance-none">
                   <option value="">Select category</option>
                   {CATEGORIES.map((cat) => (
                     <option key={cat.id} value={cat.id}>{cat.icon} {cat.name}</option>
@@ -256,14 +230,10 @@ export default function SellProduct() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Condition <span className="text-rose-500">*</span>
               </label>
-              <select
-                value={formData.condition}
-                onChange={(e) => updateField('condition', e.target.value)}
-                className="input-field appearance-none"
-              >
+              <select value={formData.condition} onChange={(e) => updateField('condition', e.target.value)} className="input-field appearance-none">
                 <option value="">Select condition</option>
                 {CONDITION_OPTIONS.map((cond) => (
                   <option key={cond} value={cond}>{cond}</option>
@@ -273,25 +243,18 @@ export default function SellProduct() {
             </div>
           </div>
 
-          {/* Listing Preview Notice */}
-          <div className="glass-card p-4 bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/10 dark:to-purple-900/10 border-primary-200 dark:border-primary-800/30">
-            <p className="text-sm text-primary-700 dark:text-primary-300">
+          {/* Listing Preview */}
+          <div className="bento-cell bento-cell-accent !p-4 hover:!transform-none">
+            <p className="text-sm text-indigo-700 dark:text-indigo-300">
               <strong>📍 Listing Campus:</strong> {user?.campus || 'Your Campus'}
             </p>
-            <p className="text-xs text-primary-600/70 dark:text-primary-400/70 mt-1">
+            <p className="text-xs text-indigo-600/70 dark:text-indigo-400/70 mt-1">
               Your product will be visible to all students. Your email and phone will remain private.
             </p>
           </div>
 
           {/* Submit */}
-          <Button
-            type="submit"
-            variant="primary"
-            size="xl"
-            fullWidth
-            loading={loading}
-            icon={Upload}
-          >
+          <Button type="submit" variant="primary" size="xl" fullWidth loading={loading} icon={Upload}>
             {uploadingImages ? 'Uploading images...' : 'List Product'}
           </Button>
         </form>

@@ -13,7 +13,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-white dark:bg-gray-950 border-t border-gray-100 dark:border-gray-800/50 hidden md:block">
+    <footer className="bg-[var(--bento-surface)] dark:bg-[var(--bento-surface)] border-t border-[var(--bento-border-soft)] hidden md:block">
       {/* Main Footer */}
       <div className="section-padding py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -25,7 +25,7 @@ export default function Footer() {
               </div>
               <span className="text-lg font-bold gradient-text tracking-tight">UNIMART</span>
             </Link>
-            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-5">
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-5">
               The premier student-only marketplace. Buy and sell textbooks, electronics, and more with
               verified fellow students on campus.
             </p>
@@ -38,7 +38,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={social.label}
                   title={social.label}
-                  className={`w-9 h-9 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 flex items-center justify-center transition-all duration-200 text-gray-400 ${social.color} hover:scale-105 hover:shadow-glass`}
+                  className={`w-9 h-9 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-[var(--bento-border-soft)] flex items-center justify-center transition-all duration-200 text-slate-400 ${social.color} hover:scale-105 hover:shadow-sm`}
                 >
                   <social.icon size={15} />
                 </a>
@@ -48,13 +48,13 @@ export default function Footer() {
 
           {/* Categories */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">Categories</h4>
+            <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">Categories</h4>
             <ul className="space-y-2.5">
               {CATEGORIES.slice(0, 6).map((cat) => (
                 <li key={cat.id}>
                   <Link
                     to={`/home?category=${cat.id}`}
-                    className="text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-2"
+                    className="text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
                   >
                     <span>{cat.icon}</span>
                     {cat.name}
@@ -66,7 +66,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">Quick Links</h4>
+            <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-2.5">
               {[
                 { to: '/sell', label: 'Sell a Product' },
@@ -79,7 +79,7 @@ export default function Footer() {
                 <li key={i}>
                   <Link
                     to={link.to}
-                    className="text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                    className="text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -90,8 +90,8 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">Stay Updated</h4>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Get notified about new listings and campus deals.</p>
+            <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">Stay Updated</h4>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Get notified about new listings and campus deals.</p>
             <div className="flex gap-2">
               <input
                 type="email"
@@ -107,12 +107,12 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-100 dark:border-gray-800/50">
+      <div className="border-t border-[var(--bento-border-soft)]">
         <div className="section-padding py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-slate-400">
             © 2026 UNIMART. All rights reserved.
           </p>
-          <p className="text-xs text-gray-400 flex items-center gap-1">
+          <p className="text-xs text-slate-400 flex items-center gap-1">
             Made with <Heart size={11} className="text-rose-400" /> for students everywhere
           </p>
         </div>

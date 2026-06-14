@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ═══════════════════════════════════════════════════
-   UNIMART — Unimart Academic Elite Design System
-   Source: Stitch MCP (asset/848eace1876d426ea5934f6dcf92a633)
+   UNIMART — Soft Bento SaaS Design System
+   80% Soft Bento · 15% Academic Elite · 5% Liquid Glass
    ═══════════════════════════════════════════════════ */
 
 @layer base {
@@ -18,7 +18,7 @@
 
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #f8f9ff;
+    background-color: #F8F9FF;
     color: #0b1c30;
     transition: background-color 0.3s ease, color 0.3s ease;
     -webkit-font-smoothing: antialiased;
@@ -32,60 +32,117 @@
   }
 
   :root {
+    /* Bento core tokens */
+    --bento-bg: #F8F9FF;
+    --bento-surface: #FFFFFF;
+    --bento-surface-soft: #F4F6FB;
+    --bento-border: #E2E8F0;
+    --bento-border-soft: #EEF2F7;
+    --bento-radius: 1.5rem;
+    --bento-radius-sm: 1rem;
+    --bento-radius-xs: 0.75rem;
+    --bento-gap: 1rem;
+    --bento-padding: 1.5rem;
+
+    /* Glass tokens (5% usage) */
     --glass-bg: rgba(255, 255, 255, 0.72);
     --glass-border: rgba(0, 0, 0, 0.06);
     --glass-blur: 20px;
+
+    /* Shadows */
+    --shadow-bento: 0 1px 2px rgba(0,0,0,0.03), 0 4px 16px rgba(0,0,0,0.04);
+    --shadow-bento-hover: 0 8px 32px rgba(79, 70, 229, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-bento-lg: 0 4px 24px rgba(0,0,0,0.06);
     --shadow-glass: 0 4px 20px rgba(0, 0, 0, 0.04);
     --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 20px rgba(0, 0, 0, 0.03);
     --shadow-card-hover: 0 8px 40px rgba(79, 70, 229, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    /* Radii */
     --radius-card: 1.25rem;
     --radius-button: 0.75rem;
     --radius-container: 1.5rem;
+
+    /* Transitions */
     --transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
     --transition-fluid: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
+    --bento-bg: #0a0a0f;
+    --bento-surface: #111827;
+    --bento-surface-soft: #1a1a2e;
+    --bento-border: rgba(255, 255, 255, 0.08);
+    --bento-border-soft: rgba(255, 255, 255, 0.04);
     --glass-bg: rgba(15, 15, 25, 0.72);
     --glass-border: rgba(255, 255, 255, 0.08);
+    --shadow-bento: 0 1px 2px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.2);
+    --shadow-bento-hover: 0 8px 32px rgba(99, 102, 241, 0.12), 0 2px 8px rgba(0, 0, 0, 0.15);
     --shadow-glass: 0 4px 20px rgba(0, 0, 0, 0.2);
     --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 20px rgba(0, 0, 0, 0.15);
     --shadow-card-hover: 0 8px 40px rgba(99, 102, 241, 0.12), 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  /* ─── Scrollbar — Stitch minimal ─── */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.12);
-    border-radius: 9999px;
-  }
-
-  .dark ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.12);
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  .dark ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
+  /* ─── Scrollbar ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.12); border-radius: 9999px; }
+  .dark ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.2); }
+  .dark ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
 }
 
 
 @layer components {
 
   /* ═══════════════════════════════════
-     GRADIENT UTILITIES (Stitch primary)
+     BENTO GRID SYSTEM
+     ═══════════════════════════════════ */
+  .bento-grid {
+    display: grid;
+    gap: var(--bento-gap);
+  }
+
+  .bento-cell {
+    background: var(--bento-surface);
+    border: 1px solid var(--bento-border-soft);
+    border-radius: var(--bento-radius);
+    padding: var(--bento-padding);
+    box-shadow: var(--shadow-bento);
+    transition: all 0.3s var(--transition-fluid);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bento-cell:hover {
+    box-shadow: var(--shadow-bento-hover);
+    transform: translateY(-2px);
+    border-color: var(--bento-border);
+  }
+
+  .dark .bento-cell {
+    background: var(--bento-surface);
+    border-color: var(--bento-border);
+  }
+
+  /* Bento cell sizes */
+  .bento-cell-lg { grid-column: span 2; }
+  .bento-cell-tall { grid-row: span 2; }
+  .bento-cell-full { grid-column: 1 / -1; }
+
+  /* Bento highlight cell */
+  .bento-cell-accent {
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 50%, #f0e7ff 100%);
+    border-color: rgba(99, 102, 241, 0.12);
+  }
+  .dark .bento-cell-accent {
+    background: linear-gradient(135deg, rgba(79,70,229,0.08) 0%, rgba(99,102,241,0.06) 100%);
+    border-color: rgba(99, 102, 241, 0.15);
+  }
+
+
+  /* ═══════════════════════════════════
+     GRADIENT UTILITIES
      ═══════════════════════════════════ */
   .gradient-text {
     @apply bg-clip-text text-transparent;
@@ -102,7 +159,7 @@
 
 
   /* ═══════════════════════════════════
-     GLASS SURFACES (Stitch liquid glass)
+     GLASS SURFACES (5% — nav, dropdowns, modals)
      ═══════════════════════════════════ */
   .glass {
     background: var(--glass-bg);
@@ -112,50 +169,48 @@
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: var(--radius-container);
-    box-shadow: var(--shadow-card);
+    background: var(--bento-surface);
+    border: 1px solid var(--bento-border-soft);
+    border-radius: var(--bento-radius);
+    box-shadow: var(--shadow-bento);
     transition: all 0.25s var(--transition-fluid);
   }
 
   .dark .glass-card {
-    background: rgba(15, 15, 25, 0.60);
-    border-color: rgba(255, 255, 255, 0.08);
+    background: var(--bento-surface);
+    border-color: var(--bento-border);
   }
 
   .glass-card:hover {
-    box-shadow: var(--shadow-card-hover);
+    box-shadow: var(--shadow-bento-hover);
     transform: translateY(-2px);
   }
 
 
   /* ═══════════════════════════════════
-     CARDS (Stitch mid-layer elevation)
+     CARDS (Bento surface cards)
      ═══════════════════════════════════ */
   .card {
-    background: #ffffff;
+    background: var(--bento-surface);
     border-radius: var(--radius-card);
-    box-shadow: var(--shadow-card);
-    border: 1px solid #f1f5f9;
+    box-shadow: var(--shadow-bento);
+    border: 1px solid var(--bento-border-soft);
     transition: all 0.25s var(--transition-fluid);
   }
 
   .dark .card {
-    background: #111827;
-    border-color: rgba(255, 255, 255, 0.06);
+    background: var(--bento-surface);
+    border-color: var(--bento-border);
   }
 
   .card-hover:hover {
-    box-shadow: var(--shadow-card-hover);
+    box-shadow: var(--shadow-bento-hover);
     transform: translateY(-2px);
   }
 
 
   /* ═══════════════════════════════════
-     BUTTONS (Stitch 44px primary)
+     BUTTONS
      ═══════════════════════════════════ */
   .btn-primary {
     display: inline-flex;
@@ -188,12 +243,12 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: #f8f9ff;
+    background: var(--bento-surface);
     color: #464555;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
     border-radius: var(--radius-button);
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--bento-border);
     transition: all 0.2s var(--transition-fluid);
     cursor: pointer;
   }
@@ -216,13 +271,13 @@
 
 
   /* ═══════════════════════════════════
-     INPUTS (Stitch recessed glass)
+     INPUTS
      ═══════════════════════════════════ */
   .input-field {
     width: 100%;
     padding: 0.75rem 1rem;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: var(--bento-surface);
+    border: 1px solid var(--bento-border);
     border-radius: var(--radius-button);
     color: #0b1c30;
     font-size: 0.875rem;
@@ -238,13 +293,8 @@
     color: #f0f2f5;
   }
 
-  .input-field::placeholder {
-    color: #9ca3af;
-  }
-
-  .dark .input-field::placeholder {
-    color: #6b7280;
-  }
+  .input-field::placeholder { color: #9ca3af; }
+  .dark .input-field::placeholder { color: #6b7280; }
 
   .input-field:focus {
     border-color: #4f46e5;
@@ -257,10 +307,42 @@
 
 
   /* ═══════════════════════════════════
-     BADGES (Stitch soft variants)
+     BADGES
      ═══════════════════════════════════ */
   .badge {
     @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+
+
+  /* ═══════════════════════════════════
+     BENTO CHIP (Category pills)
+     ═══════════════════════════════════ */
+  .bento-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid var(--bento-border);
+    background: var(--bento-surface);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #566074;
+    transition: all 0.2s var(--transition-fluid);
+    cursor: pointer;
+  }
+
+  .bento-chip:hover {
+    background: var(--bento-surface-soft);
+    border-color: #c7d2fe;
+    transform: translateY(-1px);
+  }
+
+  .bento-chip.active {
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
   }
 
 
@@ -288,6 +370,20 @@
   .link-hover:hover::after {
     @apply w-full;
   }
+
+  /* Bento hover utility */
+  .bento-hover {
+    transition: all 0.25s var(--transition-fluid);
+  }
+  .bento-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-bento-hover);
+  }
+
+  /* Bento shadow utility */
+  .bento-shadow {
+    box-shadow: var(--shadow-bento);
+  }
 }
 
 
@@ -302,11 +398,13 @@
     animation: gradient 6s ease infinite;
   }
 
-  /* Hide scrollbar for category scroll */
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
@@ -314,163 +412,88 @@
 
 
 /* ═══════════════════════════════════════════════
-   ANIMATIONS — Framer Motion-inspired CSS
-   Spring-based timing for premium feel
+   ANIMATIONS
    ═══════════════════════════════════════════════ */
 
-/* Page entrance — smooth spring */
 @keyframes pageIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-    filter: blur(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
+  from { opacity: 0; transform: translateY(12px); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
+.animate-page-in { animation: pageIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
 
-.animate-page-in {
-  animation: pageIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Fade in with spring */
-.fade-in {
-  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
+.fade-in { animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Scale in — spring bounce */
-.scale-in {
-  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
+.scale-in { animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 @keyframes scaleIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Toast slide-in — smooth */
-.toast-enter {
-  animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
+.toast-enter { animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
 @keyframes toastIn {
   from { opacity: 0; transform: translateX(80px) scale(0.95); }
   to { opacity: 1; transform: translateX(0) scale(1); }
 }
 
-/* Modal entrance — spring */
-.modal-enter {
-  animation: modalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
+.modal-enter { animation: modalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 @keyframes modalIn {
   from { opacity: 0; transform: scale(0.92) translateY(16px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Modal backdrop */
-.modal-backdrop-enter {
-  animation: backdropIn 0.25s ease both;
-}
-
+.modal-backdrop-enter { animation: backdropIn 0.25s ease both; }
 @keyframes backdropIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* Button hover/tap — Framer Motion style */
+/* Bento stagger entrance */
+@keyframes bentoIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.bento-animate {
+  animation: bentoIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 .btn-animated {
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
               box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.15s ease;
 }
+.btn-animated:hover { transform: translateY(-1px); }
+.btn-animated:active { transform: scale(0.98); }
 
-.btn-animated:hover {
-  transform: translateY(-1px);
-}
+.btn-hover { transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.btn-hover:hover { transform: translateY(-1px); }
+.btn-hover:active { transform: scale(0.98); }
 
-.btn-animated:active {
-  transform: scale(0.98);
-}
-
-/* Subtle hover lift */
-.btn-hover {
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.btn-hover:hover {
-  transform: translateY(-1px);
-}
-
-.btn-hover:active {
-  transform: scale(0.98);
-}
-
-/* CSS spinner */
 .loader-spinner {
   border-radius: 9999px;
   border: 3px solid rgba(79, 70, 229, 0.15);
   border-top-color: #4f46e5;
   animation: spin 1s linear infinite;
 }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin-reverse { to { transform: rotate(-360deg); } }
+.animate-spin-loader { animation: spin 1s linear infinite; }
 
-.loader-spinner-inner {
-  border-radius: 9999px;
-  border: 2px solid transparent;
-  border-bottom-color: #818cf8;
-  animation: spin-reverse 1.5s linear infinite;
-}
+.icon-transition { transition: color 0.2s ease; }
+.theme-icon { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes spin-reverse {
-  to { transform: rotate(-360deg); }
-}
-
-.animate-spin-loader {
-  animation: spin 1s linear infinite;
-}
-
-/* Icon color transition */
-.icon-transition {
-  transition: color 0.2s ease;
-}
-
-/* Theme toggle */
-.theme-icon {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Slide in from left */
-.slide-in-left {
-  animation: slideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
+.slide-in-left { animation: slideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
 @keyframes slideInLeft {
   from { opacity: 0; transform: translateX(-16px); }
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* Stagger for list items */
-.stagger-item {
-  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
+.stagger-item { animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
-/* Error shake */
-.shake {
-  animation: shake 0.4s ease;
-}
-
+.shake { animation: shake 0.4s ease; }
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   15% { transform: translateX(-6px); }
@@ -480,10 +503,7 @@
   75% { transform: translateX(0); }
 }
 
-/* ═══════════════════════════════════
-   STAGGER DELAY UTILITIES
-   For Framer-Motion-style cascading
-   ═══════════════════════════════════ */
+/* Stagger delays */
 .stagger-1 { animation-delay: 0.05s; }
 .stagger-2 { animation-delay: 0.1s; }
 .stagger-3 { animation-delay: 0.15s; }
@@ -493,48 +513,36 @@
 .stagger-7 { animation-delay: 0.35s; }
 .stagger-8 { animation-delay: 0.4s; }
 
-/* ═══════════════════════════════════
-   PRODUCT CARD INTERACTIONS
-   ═══════════════════════════════════ */
+/* Product card interactions */
 .product-card-hover {
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .product-card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(79, 70, 229, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
 }
+.product-card-hover:hover .product-image { transform: scale(1.05); }
+.product-image { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
-.product-card-hover:hover .product-image {
-  transform: scale(1.05);
-}
-
-.product-image {
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Favorite button */
 .favorite-btn {
   opacity: 0;
   transform: scale(0.8);
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+.product-card-hover:hover .favorite-btn { opacity: 1; transform: scale(1); }
+.favorite-btn:hover { transform: scale(1.15) !important; }
+.favorite-btn:active { transform: scale(0.9) !important; }
 
-.product-card-hover:hover .favorite-btn {
-  opacity: 1;
-  transform: scale(1);
-}
+.safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
 
-.favorite-btn:hover {
-  transform: scale(1.15) !important;
+/* Fade in up for hero elements */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-.favorite-btn:active {
-  transform: scale(0.9) !important;
-}
-
-/* Safe area for mobile nav */
-.safe-area-bottom {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
+.animate-fade-in-up { animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
