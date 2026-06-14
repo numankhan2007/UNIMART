@@ -96,7 +96,7 @@ const AboutUs = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="glass-card p-6 group"
+              className="bento-cell p-6 group"
             >
               <div className={`w-14 h-14 rounded-xl ${feature.bgColor} ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                 <feature.icon size={28} />
@@ -126,7 +126,7 @@ const AboutUs = () => {
             {contributions.map((comp, i) => (
               <div
                 key={i}
-                className="glass-card p-6 group"
+                className="bento-cell p-6 group"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="p-3 bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 rounded-xl">
@@ -155,7 +155,7 @@ const AboutUs = () => {
             {recognitions.map((item, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 p-6 glass-card group"
+                className="flex items-start gap-4 p-6 bento-cell group"
               >
                 <div className="p-4 bg-amber-100 dark:bg-amber-500/10 text-amber-600 dark:text-amber-500 rounded-2xl shrink-0">
                   <item.icon size={32} />

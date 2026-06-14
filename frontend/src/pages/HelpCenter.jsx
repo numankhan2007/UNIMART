@@ -80,7 +80,7 @@ function FAQItem({ question }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="glass-card overflow-hidden transition-all duration-300">
+    <div className="bento-cell hover:!transform-none overflow-hidden transition-all duration-300">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
@@ -162,7 +162,7 @@ export default function HelpCenter() {
         )}
 
         {/* Contact Card */}
-        <div className="glass-card p-6 text-center bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/10 dark:to-purple-900/10 border-primary-200 dark:border-primary-800/30">
+        <div className="bento-cell hover:!transform-none p-6 text-center bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/10 dark:to-purple-900/10 border-primary-200 dark:border-primary-800/30">
           <MessageCircle size={28} className="mx-auto text-primary-500 mb-3" />
           <h3 className="font-bold text-gray-900 dark:text-white">Still need help?</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 mb-1">
