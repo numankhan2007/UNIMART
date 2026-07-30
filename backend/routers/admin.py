@@ -2,12 +2,14 @@
 Admin router for Unimart — DB-backed admin auth + full management endpoints.
 All state-mutating endpoints are protected by get_current_admin and produce audit logs.
 """
+import csv
+import io
 import json
 import math
 from datetime import datetime, timezone, timedelta
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, File, HTTPException, Request, UploadFile, status
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
@@ -553,5 +555,135 @@ def get_user_activity_logs(
         "page": page,
         "page_size": page_size,
         "total_pages": max(1, math.ceil(total / page_size)),
+    }
+
+
+# ─────────────────────────────────────────────────────────────
+# REGISTRY (OfficialRecord management)
+# ─────────────────────────────────────────────────────────────
+
+@router.get("/registry")
+def list_registry(
+    search: Optional[str] = None,
+    page: int = 1,
+    page_size: int = 20,
+    admin: AdminAccount = Depends(get_current_admin),
+    db: Session = Depends(get_db),
+):
+    """Paginated list/search of OfficialRecord entries."""
+    query = db.query(OfficialRecord)
+    if search:
+        like = f"%{search}%"
+        query = query.filter(
+            OfficialRecord.register_number.ilike(like)
+            | OfficialRecord.full_name.ilike(like)
+            | OfficialRecord.official_email.ilike(like)
+            | OfficialRecord.department.ilike(like)
+        )
+    query = query.order_by(OfficialRecord.register_number)
+    items, total, total_pages = _paginate(query, page, page_size)
+    return PaginatedResponse(
+        items=[
+            {
+                "register_number": r.register_number,
+                "full_name": r.full_name,
+                "university": r.university,
+                "college": r.college,
+                "department": r.department,
+                "official_email": r.official_email,
+            }
+            for r in items
+        ],
+        total=total,
+        page=page,
+        page_size=page_size,
+        total_pages=total_pages,
+    )
+
+
+@router.post("/registry/import")
+async def import_registry(
+    request: Request,
+    file: UploadFile = File(...),
+    admin: AdminAccount = Depends(get_current_admin),
+    db: Session = Depends(get_db),
+):
+    """
+    Import/upsert OfficialRecord entries from a CSV upload.
+    CSV must have columns: name, register_no, email, university, college, department
+    Upserts by register_number — inserts new rows, updates existing ones.
+    """
+    if not file.filename or not file.filename.lower().endswith(".csv"):
+        raise HTTPException(400, "File must be a .csv")
+
+    try:
+        content = await file.read()
+        text = content.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        raise HTTPException(400, "File must be UTF-8 encoded")
+
+    reader = csv.DictReader(io.StringIO(text))
+
+    required_cols = {"name", "register_no", "email", "university", "college", "department"}
+    if not reader.fieldnames or not required_cols.issubset({c.strip().lower() for c in reader.fieldnames}):
+        raise HTTPException(
+            400,
+            f"CSV must have columns: {', '.join(sorted(required_cols))}. "
+            f"Found: {reader.fieldnames}",
+        )
+
+    imported = 0
+    updated = 0
+    skipped = 0
+    errors = []
+
+    for row_num, raw_row in enumerate(reader, start=2):  # row 1 is header
+        try:
+            row = {k.strip(): (v.strip() if v else "") for k, v in raw_row.items()}
+            reg_no = row.get("register_no", "").strip()
+            name = row.get("name", "").strip()
+            email = row.get("email", "").strip()
+            university = row.get("university", "").strip()
+            college = row.get("college", "").strip()
+            department = row.get("department", "").strip()
+
+            if not reg_no or not name or not email:
+                errors.append({"row": row_num, "reason": "Missing required field (register_no, name, or email)"})
+                skipped += 1
+                continue
+
+            existing = db.query(OfficialRecord).filter_by(register_number=reg_no).first()
+            if existing:
+                existing.full_name = name
+                existing.official_email = email
+                existing.university = university
+                existing.college = college
+                existing.department = department
+                updated += 1
+            else:
+                db.add(OfficialRecord(
+                    register_number=reg_no,
+                    full_name=name,
+                    official_email=email,
+                    university=university,
+                    college=college,
+                    department=department,
+                ))
+                imported += 1
+        except Exception as e:
+            errors.append({"row": row_num, "reason": str(e)})
+            skipped += 1
+
+    db.commit()
+
+    _log(db, admin, "REGISTRY_IMPORT", "official_record", "bulk",
+         {"imported": imported, "updated": updated, "skipped": skipped, "error_count": len(errors)},
+         request)
+
+    return {
+        "imported": imported,
+        "updated": updated,
+        "skipped": skipped,
+        "errors": errors[:50],  # cap error list to avoid huge responses
     }
 

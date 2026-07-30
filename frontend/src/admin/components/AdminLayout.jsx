@@ -1,5 +1,5 @@
 import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
-import { LayoutDashboard, Users, Package, ShoppingCart, Shield, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, Package, ShoppingCart, Shield, Database, LogOut } from "lucide-react";
 import { tokens } from "../styles/tokens";
 import { useAdminAuth } from "../AdminAuthContext";
 import "../pages/admin.css";
@@ -10,6 +10,7 @@ const NAV = [
   { id: "products",  icon: <Package size={16} />,         label: "PRODUCTS",    path: "/admin/products" },
   { id: "orders",    icon: <ShoppingCart size={16} />,    label: "ORDERS",      path: "/admin/orders" },
   { id: "audit",     icon: <Shield size={16} />,          label: "AUDIT LOGS",  path: "/admin/audit" },
+  { id: "registry",  icon: <Database size={16} />,        label: "REGISTRY",    path: "/admin/registry" },
 ];
 
 export default function AdminLayout() {

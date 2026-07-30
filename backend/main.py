@@ -198,9 +198,6 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
-    import traceback
-    with open("error.log", "w") as f:
-        f.write(traceback.format_exc())
     logger.exception("Unhandled exception caught")
     return add_cors_headers(
         JSONResponse(

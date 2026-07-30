@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ═══════════════════════════════════════════════════
-   UNIMART — Soft Bento SaaS Design System
-   80% Soft Bento · 15% Academic Elite · 5% Liquid Glass
+   UNIMART — Consolidated Design System
+   Single source of truth for all design tokens.
+   Tailwind config references these CSS variables.
    ═══════════════════════════════════════════════════ */
 
 @layer base {
@@ -18,29 +19,63 @@
 
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #F8F9FF;
-    color: #0b1c30;
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
     transition: background-color 0.3s ease, color 0.3s ease;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .dark body,
-  body.dark {
-    background-color: #0a0a0f;
-    color: #f0f2f5;
-  }
-
   :root {
-    /* Bento core tokens */
-    --bento-bg: #F8F9FF;
-    --bento-surface: #FFFFFF;
-    --bento-surface-soft: #F4F6FB;
-    --bento-border: #E2E8F0;
-    --bento-border-soft: #EEF2F7;
-    --bento-radius: 1.5rem;
-    --bento-radius-sm: 1rem;
-    --bento-radius-xs: 0.75rem;
+    /* Brand */
+    --color-brand: #4F46E5;
+    --color-brand-strong: #4338CA;
+    --color-brand-soft: #EEF2FF;
+
+    /* Verification — reserved for verified/trust states only */
+    --color-verified: #10B981;
+    --color-verified-soft: #ECFDF5;
+
+    /* Status */
+    --color-warning: #F59E0B;
+    --color-danger: #EF4444;
+
+    /* Neutrals */
+    --color-ink: #0B1C30;
+    --color-ink-soft: #566074;
+    --color-ink-muted: #7C8598;
+    --color-canvas: #F8F9FF;
+    --color-surface: #FFFFFF;
+    --color-surface-soft: #F4F6FB;
+    --color-border: #E2E8F0;
+    --color-border-soft: #EEF2F7;
+
+    /* Radius — 3 steps */
+    --radius-sm: 0.75rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+
+    /* Elevation — 3 tiers */
+    --shadow-sm: 0 1px 2px rgba(11,28,48,0.04), 0 1px 3px rgba(11,28,48,0.03);
+    --shadow-md: 0 4px 16px rgba(11,28,48,0.06);
+    --shadow-lg: 0 8px 32px rgba(79,70,229,0.08), 0 2px 8px rgba(11,28,48,0.04);
+
+    /* Motion */
+    --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-fluid: cubic-bezier(0.4, 0, 0.2, 1);
+    --duration-fast: 150ms;
+    --duration-base: 300ms;
+
+    /* Legacy compat aliases — keep existing components working */
+    --bento-bg: var(--color-canvas);
+    --bento-surface: var(--color-surface);
+    --bento-surface-soft: var(--color-surface-soft);
+    --bento-border: var(--color-border);
+    --bento-border-soft: var(--color-border-soft);
+    --bento-radius: var(--radius-lg);
+    --bento-radius-sm: var(--radius-md);
+    --bento-radius-xs: var(--radius-sm);
     --bento-gap: 1rem;
     --bento-padding: 1.5rem;
 
@@ -49,38 +84,40 @@
     --glass-border: rgba(0, 0, 0, 0.06);
     --glass-blur: 20px;
 
-    /* Shadows */
-    --shadow-bento: 0 1px 2px rgba(0,0,0,0.03), 0 4px 16px rgba(0,0,0,0.04);
-    --shadow-bento-hover: 0 8px 32px rgba(79, 70, 229, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-    --shadow-bento-lg: 0 4px 24px rgba(0,0,0,0.06);
-    --shadow-glass: 0 4px 20px rgba(0, 0, 0, 0.04);
-    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 20px rgba(0, 0, 0, 0.03);
-    --shadow-card-hover: 0 8px 40px rgba(79, 70, 229, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    /* Shadow compat aliases */
+    --shadow-bento: var(--shadow-sm);
+    --shadow-bento-hover: var(--shadow-lg);
+    --shadow-bento-lg: var(--shadow-md);
+    --shadow-glass: var(--shadow-sm);
+    --shadow-card: var(--shadow-sm);
+    --shadow-card-hover: var(--shadow-lg);
 
-    /* Radii */
+    /* Radius compat aliases */
     --radius-card: 1.25rem;
-    --radius-button: 0.75rem;
-    --radius-container: 1.5rem;
+    --radius-button: var(--radius-sm);
+    --radius-container: var(--radius-lg);
 
-    /* Transitions */
-    --transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-    --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-fluid: cubic-bezier(0.4, 0, 0.2, 1);
+    /* Transition compat aliases */
+    --transition-spring: var(--ease-spring);
+    --transition-smooth: var(--ease-standard);
+    --transition-fluid: var(--ease-fluid);
   }
 
   .dark {
-    --bento-bg: #0a0a0f;
-    --bento-surface: #111827;
-    --bento-surface-soft: #1a1a2e;
-    --bento-border: rgba(255, 255, 255, 0.08);
-    --bento-border-soft: rgba(255, 255, 255, 0.04);
+    --color-ink: #F0F2F5;
+    --color-ink-soft: #A8B2C4;
+    --color-ink-muted: #7C8598;
+    --color-canvas: #0A0A0F;
+    --color-surface: #111827;
+    --color-surface-soft: #1A1A2E;
+    --color-border: rgba(255,255,255,0.08);
+    --color-border-soft: rgba(255,255,255,0.04);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.15);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.2);
+    --shadow-lg: 0 8px 32px rgba(99,102,241,0.12), 0 2px 8px rgba(0,0,0,0.15);
+
     --glass-bg: rgba(15, 15, 25, 0.72);
     --glass-border: rgba(255, 255, 255, 0.08);
-    --shadow-bento: 0 1px 2px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.2);
-    --shadow-bento-hover: 0 8px 32px rgba(99, 102, 241, 0.12), 0 2px 8px rgba(0, 0, 0, 0.15);
-    --shadow-glass: 0 4px 20px rgba(0, 0, 0, 0.2);
-    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 20px rgba(0, 0, 0, 0.15);
-    --shadow-card-hover: 0 8px 40px rgba(99, 102, 241, 0.12), 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   /* ─── Scrollbar ─── */
@@ -407,6 +444,13 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* Trust/verification accent typography — Fraunces serif */
+  .font-trust {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-optical-sizing: auto;
   }
 }
 

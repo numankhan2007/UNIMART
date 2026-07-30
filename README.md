@@ -293,9 +293,9 @@ npm run dev
 ### Authentication
 | Method | Endpoint | Description |
 |--------|---------|-------------|
-| `POST` | `/api/auth/verify-register` | Verify register number exists in registry |
-| `POST` | `/api/auth/send-otp` | Send registration OTP to email |
-| `POST` | `/api/auth/verify-otp` | Verify registration OTP |
+| `GET` | `/api/auth/verify/{register_number}` | Verify register number exists in registry |
+| `POST` | `/api/auth/send-registration-otp` | Send registration OTP to email |
+| `POST` | `/api/auth/verify-registration-otp` | Verify registration OTP |
 | `POST` | `/api/auth/register` | Register new student account |
 | `POST` | `/api/auth/login` | Login with register number or username |
 | `POST` | `/api/auth/refresh` | Refresh access token |
@@ -346,6 +346,8 @@ npm run dev
 | `DELETE` | `/api/admin/products/{id}` | Force-delete product |
 | `PATCH`  | `/api/admin/orders/{id}/status` | Override order status |
 | `GET`    | `/api/admin/audit-logs` | View admin audit trail |
+| `GET`    | `/api/admin/registry` | List/search student registry |
+| `POST`   | `/api/admin/registry/import` | Import CSV to student registry |
 
 ---
 

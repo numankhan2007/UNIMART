@@ -8,6 +8,7 @@ import Users from "./pages/Users";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
 import AuditLogs from "./pages/AuditLogs";
+import Registry from "./pages/Registry";
 
 function ProtectedAdminLayout() {
   const { isAuthenticated } = useAdminAuth();
@@ -29,6 +30,7 @@ function AdminRoutes() {
         <Route path="products" element={<Products />} />
         <Route path="orders" element={<Orders />} />
         <Route path="audit" element={<AuditLogs />} />
+        <Route path="registry" element={<Registry />} />
       </Route>
     </Routes>
   );

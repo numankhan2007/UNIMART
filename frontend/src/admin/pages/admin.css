@@ -1,3 +1,18 @@
+/* ═══════════════════════════════════════════════════
+   UNIMART ADMIN — Matrix Hacker Theme Tokens
+   ═══════════════════════════════════════════════════ */
+.admin-theme {
+  --admin-bg: #000500;
+  --admin-bg-elevated: #000a02;
+  --admin-surface: #001a04;
+  --admin-fg: #00ff41;
+  --admin-fg-dim: #00b32c;
+  --admin-fg-muted: #005c12;
+  --admin-danger: #ff0033;
+  --admin-border: #003d0c;
+  --admin-border-light: #005c12;
+}
+
 /* Hacker Matrix Background Grid */
 .admin-bg-grid {
   position: absolute;
@@ -63,11 +78,11 @@
 
 /* Glitch text effect */
 @keyframes glitch {
-  0%  { text-shadow: 2px 0 #ff0033, -2px 0 #00ff41; }
-  20% { text-shadow: -2px 0 #ff0033, 2px 0 #00ff41; }
-  40% { text-shadow: 2px 2px #ff0033, -2px -2px #00ff41; }
-  60% { text-shadow: -2px 0 #ff0033, 2px 0 #00ff41; clip-path: inset(5% 0 90% 0); }
-  80% { text-shadow: 2px 0 #ff0033, -2px 0 #00ff41; }
+  0%  { text-shadow: 2px 0 var(--admin-danger), -2px 0 var(--admin-fg); }
+  20% { text-shadow: -2px 0 var(--admin-danger), 2px 0 var(--admin-fg); }
+  40% { text-shadow: 2px 2px var(--admin-danger), -2px -2px var(--admin-fg); }
+  60% { text-shadow: -2px 0 var(--admin-danger), 2px 0 var(--admin-fg); clip-path: inset(5% 0 90% 0); }
+  80% { text-shadow: 2px 0 var(--admin-danger), -2px 0 var(--admin-fg); }
   100%{ text-shadow: none; }
 }
 
@@ -77,8 +92,8 @@
 
 /* Neon glow pulse for primary elements */
 @keyframes neonPulse {
-  0%, 100% { box-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41; }
-  50%       { box-shadow: 0 0 10px #00ff41, 0 0 25px #00ff41, 0 0 50px #00ff41; }
+  0%, 100% { box-shadow: 0 0 5px var(--admin-fg), 0 0 10px var(--admin-fg), 0 0 20px var(--admin-fg); }
+  50%       { box-shadow: 0 0 10px var(--admin-fg), 0 0 25px var(--admin-fg), 0 0 50px var(--admin-fg); }
 }
 
 .admin-neon-border {
@@ -94,25 +109,25 @@
 .admin-cursor::after {
   content: "_";
   animation: blink 1s step-start infinite;
-  color: #00ff41;
+  color: var(--admin-fg);
 }
 
 /* Admin sidebar hacker style */
 .admin-sidebar-link {
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
-  color: #00b32c;
+  color: var(--admin-fg-dim);
   letter-spacing: 0.05em;
   transition: all 0.15s;
 }
 
 .admin-sidebar-link:hover {
-  color: #00ff41;
+  color: var(--admin-fg);
   text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
 }
 
 .admin-sidebar-link.active {
-  color: #00ff41;
+  color: var(--admin-fg);
   text-shadow: 0 0 12px rgba(0, 255, 65, 0.8);
 }
 
@@ -122,16 +137,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #000500;
+  background: var(--admin-bg, #000500);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #003d0c;
+  background: var(--admin-border, #003d0c);
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00ff41;
+  background: var(--admin-fg, #00ff41);
 }
 
 /* Live dashboard indicator pulse */

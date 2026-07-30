@@ -1,37 +1,10 @@
 /* ════════════════════════════════════════════
    UNIMART LANDING — Premium Liquid Glass
-   Stitch Design System: Unimart Academic Elite
+   Component-scoped styles for Landing.jsx
    ════════════════════════════════════════════ */
 
 .lnd *, .lnd *::before, .lnd *::after {
   box-sizing: border-box; margin: 0; padding: 0;
-}
-
-/* ─── MAIN CONTENT KEYFRAMES ──────────────────── */
-
-@keyframes lnd-fade-up {
-  0%   { opacity: 0; transform: translateY(24px); filter: blur(4px); }
-  100% { opacity: 1; transform: translateY(0);    filter: blur(0); }
-}
-
-@keyframes lnd-card-in {
-  0%   { opacity: 0; transform: translateY(32px) scale(0.95); }
-  100% { opacity: 1; transform: translateY(0)    scale(1);    }
-}
-
-@keyframes lnd-social-in {
-  0%   { opacity: 0; transform: scale(0.5) rotate(-12deg); }
-  100% { opacity: 1; transform: scale(1)   rotate(0deg);   }
-}
-
-@keyframes lnd-float {
-  0%, 100% { transform: translateY(0px); }
-  50%      { transform: translateY(-12px); }
-}
-
-@keyframes lnd-shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
 }
 
 /* ─── CTA BUTTON ───────────────────────── */
