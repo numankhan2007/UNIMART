@@ -125,7 +125,7 @@ export default function MyProducts({ onProductDeleted }) {
                       <div className="flex items-center gap-2 mt-1 flex-wrap">
                         {category && (
                           <Badge color={category?.color || 'gray'}>
-                            {category?.icon} {category?.name}
+                            {category?.name}
                           </Badge>
                         )}
                         <Badge color={isSold ? 'rose' : isReserved ? 'amber' : 'emerald'}>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ProductDetails from '../components/product/ProductDetails';
 import OrderModal from '../components/order/OrderModal';
-import { Loader2 } from 'lucide-react';
+import { Loader2, AlertCircle } from 'lucide-react';
 import api from '../services/api';
 
 export default function ProductPage() {
@@ -21,19 +21,21 @@ export default function ProductPage() {
         const { data } = await api.get(`/products/${id}`);
         setProduct(data);
       } catch (err) {
-        console.error("Failed to fetch product", err);
-        setError(err.response?.data?.detail || 'Product not found');
+        console.error('Failed to fetch product details', err);
+        setError(err.response?.status === 404 ? "This product does not exist or has been removed." : "Failed to load product details.");
       } finally {
         setLoading(false);
       }
     };
-    fetchProduct();
+    if (id) {
+      fetchProduct();
+    }
   }, [id]);
 
   if (loading) {
     return (
       <div className="section-padding page-padding flex items-center justify-center min-h-[50vh]">
-        <Loader2 className="w-8 h-8 animate-spin text-indigo-500" />
+        <Loader2 className="w-8 h-8 animate-spin text-[var(--color-primary)]" />
       </div>
     );
   }
@@ -41,9 +43,11 @@ export default function ProductPage() {
   if (error || !product) {
     return (
       <div className="section-padding page-padding text-center">
-        <p className="text-6xl mb-4">😕</p>
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Product Not Found</h2>
-        <p className="text-gray-500 dark:text-gray-400 mb-6">{error || "This product may have been removed or doesn't exist."}</p>
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-surface-soft)] flex items-center justify-center text-[var(--color-ink-soft)]">
+          <AlertCircle size={32} />
+        </div>
+        <h2 className="font-display text-2xl font-bold text-[var(--color-ink)] mb-2">Product Not Found</h2>
+        <p className="text-sm text-[var(--color-ink-soft)] mb-6">{error || "This product may have been removed or doesn't exist."}</p>
         <button
           onClick={() => navigate('/')}
           className="btn-primary"

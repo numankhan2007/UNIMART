@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-import { Shield, Loader2 } from 'lucide-react';
+import { Shield, Loader2, Lock } from 'lucide-react';
 import ChatBox from '../components/chat/ChatBox';
 import { useAuth } from '../context/AuthContext';
 import { useOrders } from '../context/OrderContext';
@@ -50,7 +50,9 @@ export default function ChatPage() {
   if (error || !order) {
     return (
       <div className="section-padding page-padding text-center">
-        <p className="text-6xl mb-4">🔒</p>
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+          <Lock size={32} />
+        </div>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Chat Unavailable</h2>
         <p className="text-gray-500 dark:text-gray-400">
           {error || "This chat doesn't exist or the order was not found. You can only chat after placing an order."}

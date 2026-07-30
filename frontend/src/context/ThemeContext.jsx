@@ -5,7 +5,7 @@ const ThemeContext = createContext(null);
 export function ThemeProvider({ children }) {
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('unimart_theme');
-    return saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return saved ? saved === 'dark' : (typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
 
   useEffect(() => {

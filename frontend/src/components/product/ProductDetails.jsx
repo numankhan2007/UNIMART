@@ -96,8 +96,7 @@ export default function ProductDetails({ product, onOrder, onBack }) {
           <div>
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               {category && (
-                <Badge color={category?.color || 'indigo'}>
-                  <span className="mr-1">{category?.icon}</span>
+                <Badge color={category?.color || 'amber'}>
                   {category?.name}
                 </Badge>
               )}

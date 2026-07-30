@@ -1,10 +1,10 @@
 const variants = {
-  primary: 'gradient-bg text-white shadow-lg hover:shadow-xl active:scale-95',
-  secondary: 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700',
-  outline: 'border-2 border-indigo-500 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950',
-  danger: 'bg-rose-500 text-white hover:bg-rose-600 shadow-lg hover:shadow-xl',
-  ghost: 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800',
-  success: 'bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg',
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  outline: 'btn-secondary',
+  danger: 'btn-danger',
+  ghost: 'btn-ghost',
+  success: 'bg-[#5C7A4E] text-white font-semibold rounded-[var(--radius-md)] shadow-soft-sm hover:shadow-soft-md transition-all duration-200',
 };
 
 const sizes = {
@@ -34,10 +34,10 @@ export default function Button({
       onClick={onClick}
       disabled={disabled || loading}
       className={`
-        inline-flex items-center justify-center gap-2 font-semibold rounded-xl
-        transition-all duration-300 cursor-pointer btn-animated
+        inline-flex items-center justify-center gap-2 font-semibold rounded-[var(--radius-md)]
+        transition-all duration-200 cursor-pointer btn-animated
         disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
-        focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900
+        focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50 focus:ring-offset-2 focus:ring-offset-[var(--color-surface)]
         ${variants[variant]}
         ${sizes[size]}
         ${fullWidth ? 'w-full' : ''}

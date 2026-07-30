@@ -76,7 +76,7 @@ export default function Navbar() {
 
   const navLinks = [
     { to: "/home", label: "Browse", icon: ShoppingBag },
-    { to: "/sell", label: "Sell", icon: Plus },
+    { to: "/sell", label: "List your item", icon: Plus },
     { to: "/orders", label: "Orders", icon: Package },
   ];
 

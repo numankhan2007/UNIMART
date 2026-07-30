@@ -8,16 +8,22 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'sans-serif'],
-        trust: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['"Atkinson Hyperlegible"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Crimson Pro"', 'Georgia', 'serif'],
+        trust: ['"Crimson Pro"', 'Georgia', 'serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
         /* ─── Consolidated tokens (reference CSS variables) ─── */
         brand: {
-          DEFAULT: 'var(--color-brand)',
-          strong: 'var(--color-brand-strong)',
-          soft: 'var(--color-brand-soft)',
+          DEFAULT: 'var(--color-primary)',
+          strong: 'var(--color-primary-strong)',
+          soft: 'var(--color-primary-soft)',
+        },
+        primary: {
+          DEFAULT: 'var(--color-primary)',
+          strong: 'var(--color-primary-strong)',
+          soft: 'var(--color-primary-soft)',
         },
         verified: {
           DEFAULT: 'var(--color-verified)',
@@ -37,36 +43,18 @@ export default {
           DEFAULT: 'var(--color-border)',
           soft: 'var(--color-border-soft)',
         },
-        /* Keep primary scale for components that use primary-50..950 */
-        primary: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
-          950: '#1e1b4b',
-        },
-      },
-      backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #4f46e5, #6366f1, #818cf8)',
-        'gradient-subtle': 'linear-gradient(135deg, #eef2ff 0%, #e0e7ff 50%, #f0e7ff 100%)',
-        'gradient-hero': 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%)',
-        'gradient-card': 'linear-gradient(135deg, rgba(99,102,241,0.05), rgba(168,85,247,0.05), rgba(236,72,153,0.03))',
-        'gradient-glass': 'linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6))',
       },
       boxShadow: {
         'sm-token': 'var(--shadow-sm)',
         'md-token': 'var(--shadow-md)',
         'lg-token': 'var(--shadow-lg)',
-        'card': 'var(--shadow-sm)',
-        'card-hover': 'var(--shadow-lg)',
-        'button': '0 2px 8px rgba(79, 70, 229, 0.25)',
-        'button-hover': '0 4px 16px rgba(79, 70, 229, 0.35)',
+        'soft-sm': 'var(--shadow-soft-sm)',
+        'soft-md': 'var(--shadow-soft-md)',
+        'soft-lg': 'var(--shadow-soft-lg)',
+        'card': 'var(--shadow-soft-md)',
+        'card-hover': 'var(--shadow-soft-lg)',
+        'button': 'var(--shadow-soft-sm)',
+        'button-hover': 'var(--shadow-soft-md)',
         'inner-soft': 'inset 0 2px 4px rgba(0, 0, 0, 0.03)',
       },
       borderRadius: {

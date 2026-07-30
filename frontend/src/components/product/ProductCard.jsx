@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Heart, BadgeCheck } from 'lucide-react';
+import { MapPin, Heart, CheckCircle2 } from 'lucide-react';
 import SoldRibbon from './SoldRibbon';
 import { formatPrice } from '../../utils/helpers';
 
@@ -58,9 +58,9 @@ export default function ProductCard({ product, index = 0 }) {
 
           {/* Verified Seller Badge */}
           {isVerifiedSeller && !isSold && (
-            <div className="absolute top-3 left-3 z-10 bg-white/90 dark:bg-slate-800/90 border border-slate-100 dark:border-slate-700 shadow-sm text-indigo-600 dark:text-indigo-400 text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1">
-              <BadgeCheck size={12} className="text-indigo-600 dark:text-indigo-400" />
-              Verified
+            <div className="absolute top-3 left-3 z-10 bg-[var(--color-surface)]/95 dark:bg-[var(--color-surface)]/95 border border-[var(--color-verified)] shadow-sm text-[var(--color-verified)] text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+              <CheckCircle2 size={13} style={{ color: 'var(--color-verified)', fill: 'var(--color-verified-soft)' }} strokeWidth={2.5} />
+              <span className="text-[var(--color-ink)] font-semibold">Verified</span>
             </div>
           )}
 
@@ -81,7 +81,7 @@ export default function ProductCard({ product, index = 0 }) {
 
         {/* Info Section */}
         <div className="p-4 flex flex-col flex-grow bg-[var(--bento-surface)]">
-          <h3 className="font-semibold text-slate-900 dark:text-white text-sm line-clamp-2 leading-snug group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors mb-auto">
+          <h3 className="font-semibold text-[var(--color-ink)] text-sm line-clamp-2 leading-snug group-hover:text-[var(--color-primary)] transition-colors mb-auto">
             {product.title}
           </h3>
 

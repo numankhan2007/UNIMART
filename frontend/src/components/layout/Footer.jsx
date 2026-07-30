@@ -13,21 +13,20 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[var(--bento-surface)] dark:bg-[var(--bento-surface)] border-t border-[var(--bento-border-soft)] hidden md:block">
+    <footer className="bg-[var(--color-surface)] border-t border-[var(--color-border)] hidden md:block">
       {/* Main Footer */}
       <div className="section-padding py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/home" className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 gradient-bg rounded-xl flex items-center justify-center shadow-button">
+              <div className="w-8 h-8 gradient-bg rounded-[var(--radius-md)] flex items-center justify-center shadow-soft-sm">
                 <ShoppingBag size={17} className="text-white" />
               </div>
-              <span className="text-lg font-bold gradient-text tracking-tight">UNIMART</span>
+              <span className="text-lg font-display font-bold text-[var(--color-primary)] tracking-tight">UNIMART</span>
             </Link>
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-5">
-              The premier student-only marketplace. Buy and sell textbooks, electronics, and more with
-              verified fellow students on campus.
+            <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed mb-5">
+              The premier student-only marketplace. Buy and sell textbooks, electronics, and more with verified fellow students on campus.
             </p>
             <div className="flex flex-wrap gap-2">
               {vglugSocialLinks.map((social, i) => (
@@ -38,7 +37,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={social.label}
                   title={social.label}
-                  className={`w-9 h-9 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-[var(--bento-border-soft)] flex items-center justify-center transition-all duration-200 text-slate-400 ${social.color} hover:scale-105 hover:shadow-sm`}
+                  className={`w-9 h-9 rounded-[var(--radius-md)] bg-[var(--color-surface-soft)] border border-[var(--color-border)] flex items-center justify-center transition-all duration-200 text-[var(--color-ink-soft)] ${social.color} hover:scale-105 hover:shadow-soft-sm`}
                 >
                   <social.icon size={15} />
                 </a>
@@ -48,15 +47,14 @@ export default function Footer() {
 
           {/* Categories */}
           <div>
-            <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">Categories</h4>
+            <h4 className="font-display text-sm font-bold text-[var(--color-ink)] mb-4 uppercase tracking-wider">Categories</h4>
             <ul className="space-y-2.5">
               {CATEGORIES.slice(0, 6).map((cat) => (
                 <li key={cat.id}>
                   <Link
                     to={`/home?category=${cat.id}`}
-                    className="text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    className="text-sm text-[var(--color-ink-soft)] hover:text-[var(--color-primary)] transition-colors block"
                   >
-                    <span>{cat.icon}</span>
                     {cat.name}
                   </Link>
                 </li>
@@ -66,10 +64,10 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">Quick Links</h4>
+            <h4 className="font-display text-sm font-bold text-[var(--color-ink)] mb-4 uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-2.5">
               {[
-                { to: '/sell', label: 'Sell a Product' },
+                { to: '/sell', label: 'List your item' },
                 { to: '/orders', label: 'My Orders' },
                 { to: '/dashboard', label: 'Dashboard' },
                 { to: '/help', label: 'Help Center' },
@@ -79,7 +77,7 @@ export default function Footer() {
                 <li key={i}>
                   <Link
                     to={link.to}
-                    className="text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                    className="text-sm text-[var(--color-ink-soft)] hover:text-[var(--color-primary)] transition-colors block"
                   >
                     {link.label}
                   </Link>
@@ -90,15 +88,15 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">Stay Updated</h4>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Get notified about new listings and campus deals.</p>
+            <h4 className="font-display text-sm font-bold text-[var(--color-ink)] mb-4 uppercase tracking-wider">Stay Updated</h4>
+            <p className="text-sm text-[var(--color-ink-soft)] mb-4">Get notified about new listings and campus deals.</p>
             <div className="flex gap-2">
               <input
                 type="email"
                 placeholder="Your email"
-                className="input-field text-sm !py-2.5"
+                className="input-field text-sm !py-2.5 !rounded-[var(--radius-md)]"
               />
-              <button className="btn-primary text-sm !py-2.5 !px-4 !rounded-xl flex-shrink-0">
+              <button className="btn-primary text-sm !py-2.5 !px-4 !rounded-[var(--radius-md)] flex-shrink-0">
                 Join
               </button>
             </div>
@@ -107,16 +105,17 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-[var(--bento-border-soft)]">
+      <div className="border-t border-[var(--color-border)]">
         <div className="section-padding py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-[var(--color-ink-soft)]">
             © 2026 UNIMART. All rights reserved.
           </p>
-          <p className="text-xs text-slate-400 flex items-center gap-1">
-            Made with <Heart size={11} className="text-rose-400" /> for students everywhere
+          <p className="text-xs text-[var(--color-ink-soft)] flex items-center gap-1">
+            Made with <Heart size={11} className="text-[var(--color-danger)]" /> for students everywhere
           </p>
         </div>
       </div>
     </footer>
   );
 }
+

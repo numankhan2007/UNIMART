@@ -1,17 +1,13 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
 import App from '../App';
 
 describe('App', () => {
   it('renders without throwing', () => {
-    // Smoke test — App mounts and renders the router without crashing
+    // Smoke test — App mounts and renders without crashing
     expect(() => {
-      render(
-        <MemoryRouter>
-          <App />
-        </MemoryRouter>
-      );
+      render(<App />);
     }).not.toThrow();
   });
 });
+
