@@ -157,10 +157,10 @@ export default function Dashboard() {
       <div className="max-w-5xl mx-auto">
 
         {/* ═══ PROFILE BENTO GRID ═══ */}
-        <div className="bento-grid mb-8" style={{ gridTemplateColumns: 'repeat(12, 1fr)', gap: '1rem' }}>
+        <div className="flex flex-col gap-6 mb-8">
 
-          {/* Profile Card — main cell */}
-          <div className="bento-cell col-span-12 lg:col-span-8 relative hover:!transform-none bento-animate">
+          {/* Profile Card — main full-width cell with distinct border and soft shadow */}
+          <div className="card relative w-full p-6 sm:p-8 !rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-soft-md hover:!transform-none bento-animate">
             {/* Info button */}
             <div ref={infoRef} className="absolute" style={{ top: '15px', right: '15px' }}>
               <button
@@ -275,22 +275,24 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Stats — 3 bento cells on the right */}
-          {statCards.map((stat, i) => (
-            <div key={stat.label} className="bento-cell col-span-4 lg:col-span-4 flex flex-col items-center justify-center text-center py-6 bento-animate" style={{ animationDelay: `${0.1 + i * 0.06}s` }}>
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: stat.bg }}>
-                <stat.icon size={20} style={{ color: stat.color }} />
+          {/* Stats — aligned horizontally across 3 columns */}
+          <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+            {statCards.map((stat, i) => (
+              <div key={stat.label} className="card flex flex-col items-center justify-center text-center py-6 px-4 bento-animate hover:!translate-y-[-2px] transition-all" style={{ animationDelay: `${0.1 + i * 0.06}s` }}>
+                <div className="w-12 h-12 rounded-[var(--radius-md)] flex items-center justify-center mb-3 shadow-soft-sm" style={{ backgroundColor: stat.bg }}>
+                  <stat.icon size={22} style={{ color: stat.color }} />
+                </div>
+                <p className="text-2xl font-bold text-[var(--color-ink)] font-data">
+                  {stat.loading ? <Loader2 size={20} className="animate-spin mx-auto text-[var(--color-primary)]" /> : stat.value}
+                </p>
+                <p className="text-xs font-semibold text-[var(--color-ink-soft)] uppercase tracking-wider mt-1">{stat.label}</p>
               </div>
-              <p className="text-xl font-bold text-slate-900 dark:text-white font-data">
-                {stat.loading ? <Loader2 size={18} className="animate-spin mx-auto" /> : stat.value}
-              </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{stat.label}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* ═══ HISTORY BENTO SECTION ═══ */}
-        <div className="bento-cell hover:!transform-none bento-animate" style={{ animationDelay: '0.2s' }}>
+        <div className="card p-6 sm:p-8 hover:!transform-none bento-animate" style={{ animationDelay: '0.2s' }}>
           <HistoryTabs activeTab={activeTab} onTabChange={handleTabChange} />
           <div className="mt-4">
             {loadingOrders ? (

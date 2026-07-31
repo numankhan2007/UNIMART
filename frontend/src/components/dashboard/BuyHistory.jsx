@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, ShoppingCart } from 'lucide-react';
 import OrderStatusBadge from '../order/OrderStatusBadge';
 import Button from '../common/Button';
 import { formatPrice, formatDate } from '../../utils/helpers';
@@ -7,10 +7,12 @@ import { formatPrice, formatDate } from '../../utils/helpers';
 export default function BuyHistory({ orders }) {
   if (orders.length === 0) {
     return (
-      <div className="text-center py-12">
-        <p className="text-4xl mb-3">🛒</p>
-        <p className="text-gray-500 dark:text-gray-400">You haven't bought anything yet.</p>
-        <Link to="/home" className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline mt-2 inline-block">
+      <div className="text-center py-12 flex flex-col items-center justify-center">
+        <div className="w-14 h-14 rounded-full bg-[var(--color-primary-soft)] border border-[var(--color-border)] flex items-center justify-center mb-4 shadow-soft-sm">
+          <ShoppingCart size={28} className="text-[var(--color-primary)]" />
+        </div>
+        <p className="text-base font-semibold text-[var(--color-ink)]">You haven't bought anything yet.</p>
+        <Link to="/home" className="text-sm text-[var(--color-primary)] font-medium hover:underline mt-2 inline-block">
           Browse products →
         </Link>
       </div>

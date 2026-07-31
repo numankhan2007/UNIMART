@@ -90,33 +90,27 @@ export default function Landing() {
           <div className="flex flex-wrap items-center justify-center gap-4 mt-9">
             <button
               onClick={() => navigate("/login")}
-              className="btn-primary text-base"
+              className="btn-primary text-base !px-8 !py-3.5"
             >
-              Start trading
+              Start now
               <ArrowRight size={18} />
-            </button>
-            <button
-              onClick={() => document.getElementById("trust-section")?.scrollIntoView({ behavior: "smooth" })}
-              className="btn-secondary text-base"
-            >
-              How it works
             </button>
           </div>
 
-          {/* Stat ledger strip — centered cells */}
+          {/* Stat ledger strip — centered cells with clean vertical dividers */}
           <div
-            className="mt-16 w-full grid grid-cols-2 sm:grid-cols-4 rounded-[var(--radius-lg)] overflow-hidden"
-            style={{ border: "1px solid var(--color-border)", boxShadow: "var(--shadow-sm)" }}
+            className="mt-16 w-full grid grid-cols-2 sm:grid-cols-4 rounded-[var(--radius-lg)] overflow-hidden border border-[var(--color-border)] shadow-soft-sm bg-[var(--color-surface)]"
           >
             {STATS.map((stat, i) => (
               <div
                 key={stat.label}
-                className="flex flex-col items-center justify-center text-center gap-1.5 px-5 py-6"
-                style={{
-                  background: "var(--color-surface)",
-                  borderRight: i % 2 === 0 && i !== STATS.length - 1 ? "1px solid var(--color-border-soft)" : undefined,
-                  borderTop: i >= 2 ? "1px solid var(--color-border-soft)" : undefined,
-                }}
+                className={`flex flex-col items-center justify-center text-center gap-1.5 px-5 py-6 bg-[var(--color-surface)] ${
+                  i % 2 === 0 ? 'border-r border-[var(--color-border)]' : ''
+                } ${
+                  i < 3 ? 'sm:border-r sm:border-[var(--color-border)]' : 'sm:border-r-0'
+                } ${
+                  i >= 2 ? 'border-t border-[var(--color-border)] sm:border-t-0' : ''
+                }`}
               >
                 <stat.icon size={18} style={{ color: "var(--color-verified)" }} />
                 <div className="font-data text-2xl font-bold" style={{ color: "var(--color-ink)" }}>{stat.value}</div>

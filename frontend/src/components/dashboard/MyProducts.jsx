@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Package, Eye, Loader2, RefreshCw, Trash2, AlertTriangle, X } from 'lucide-react';
+import { Package, Eye, Loader2, RefreshCw, Trash2, AlertTriangle, X, PackageOpen } from 'lucide-react';
 import Badge from '../common/Badge';
 import { formatPrice } from '../../utils/helpers';
 import { CATEGORIES } from '../../constants';
@@ -85,10 +85,12 @@ export default function MyProducts({ onProductDeleted }) {
 
   if (products.length === 0) {
     return (
-      <div className="text-center py-12">
-        <p className="text-4xl mb-3">📦</p>
-        <p className="text-gray-500 dark:text-gray-400">You haven't listed any products yet.</p>
-        <Link to="/sell" className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline mt-2 inline-block">
+      <div className="text-center py-12 flex flex-col items-center justify-center">
+        <div className="w-14 h-14 rounded-full bg-[var(--color-primary-soft)] border border-[var(--color-border)] flex items-center justify-center mb-4 shadow-soft-sm">
+          <PackageOpen size={28} className="text-[var(--color-primary)]" />
+        </div>
+        <p className="text-base font-semibold text-[var(--color-ink)]">You haven't listed any products yet.</p>
+        <Link to="/sell" className="text-sm text-[var(--color-primary)] font-medium hover:underline mt-2 inline-block">
           Sell a product →
         </Link>
       </div>

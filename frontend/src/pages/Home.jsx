@@ -16,7 +16,6 @@ export default function Home() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const searchQuery = searchParams.get('search') || '';
-  const [heroSearchInput, setHeroSearchInput] = useState(searchQuery);
   const [registeredCount, setRegisteredCount] = useState('1K+');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,10 +31,6 @@ export default function Home() {
     campus: '',
     freeOnly: false,
   });
-
-  useEffect(() => {
-    setHeroSearchInput(searchQuery);
-  }, [searchQuery]);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -73,24 +68,6 @@ export default function Home() {
     fetchProducts();
   }, [fetchProducts]);
 
-  const handleHeroSearch = (e) => {
-    if (e) e.preventDefault();
-    const params = new URLSearchParams(searchParams);
-    if (heroSearchInput.trim()) {
-      params.set('search', heroSearchInput.trim());
-    } else {
-      params.delete('search');
-    }
-    navigate({ search: params.toString() });
-  };
-
-  const handleSuggestionClick = (suggestion) => {
-    setHeroSearchInput(suggestion);
-    const params = new URLSearchParams(searchParams);
-    params.set('search', suggestion);
-    navigate({ search: params.toString() });
-  };
-
   const filteredProducts = useMemo(() => {
     let result = [...products];
     if (filters.condition) result = result.filter((p) => p.description?.includes(`[Condition: ${filters.condition}]`));
@@ -112,73 +89,40 @@ export default function Home() {
   return (
     <div className="flex flex-col relative overflow-hidden bg-[var(--color-canvas)] text-[var(--color-ink)] transition-colors duration-300">
       
-      {/* ═══ 1. HERO SECTION (Search-Focused) ═══ */}
+      {/* ═══ 1. HERO SECTION (Centered Trust & Safety) ═══ */}
       <header className="relative w-full max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-12">
-        <div className="bento-grid" style={{ gridTemplateColumns: 'repeat(12, 1fr)', gap: '1.25rem' }}>
+        <div className="flex flex-col gap-6">
           
-          {/* Main Hero Cell */}
-          <div className="card col-span-12 lg:col-span-8 flex flex-col justify-center items-center lg:items-start text-center lg:text-left py-10 sm:py-14 px-6 sm:px-10 bento-animate">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--color-primary-soft)] text-[var(--color-primary)] text-xs font-bold uppercase tracking-wider mb-4 border border-[var(--color-border)]">
+          {/* Main Hero Cell — Center Aligned */}
+          <div className="card w-full flex flex-col justify-center items-center text-center py-12 sm:py-16 px-6 sm:px-12 bento-animate min-h-[260px]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--color-primary-soft)] text-[var(--color-primary)] text-xs font-bold uppercase tracking-wider mb-5 border border-[var(--color-border)] shadow-soft-sm">
               <ShieldCheck size={14} />
               <span>Institutional Campus Trust</span>
             </div>
             
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-ink)] max-w-2xl leading-[1.15]">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--color-ink)] max-w-3xl leading-[1.15] tracking-tight">
               Buy & Sell with Verified <span className="text-[var(--color-primary)]">Campus Peers</span>
             </h1>
             
-            <p className="text-sm sm:text-base text-[var(--color-ink-soft)] max-w-lg mx-auto lg:mx-0 mt-4 leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--color-ink-soft)] max-w-2xl mx-auto mt-5 leading-relaxed">
               The premier marketplace designed exclusively for university students. Trade textbooks, lab equipment, and tech — safely and directly on campus.
             </p>
-            
-            {/* Hero Interactive Search Bar */}
-            <form onSubmit={handleHeroSearch} className="w-full max-w-lg mt-6 relative flex items-center">
-              <input
-                type="text"
-                value={heroSearchInput}
-                onChange={(e) => setHeroSearchInput(e.target.value)}
-                placeholder="Search textbooks, iPads, lab coats, calculators..."
-                className="input-field !pr-28 !py-3.5 !rounded-[var(--radius-lg)] text-sm shadow-soft-sm hover:shadow-soft-md transition-all w-full"
-              />
-              <button
-                type="submit"
-                className="btn-primary !absolute right-1.5 top-1.5 bottom-1.5 !px-5 !py-2 !rounded-[var(--radius-md)] text-xs font-semibold flex items-center gap-1"
-              >
-                <Search size={14} />
-                <span>Search</span>
-              </button>
-            </form>
-
-            {/* Popular Search Suggestions */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mt-3 text-xs text-[var(--color-ink-soft)]">
-              <span className="font-medium text-[var(--color-ink)]">Popular:</span>
-              {['Textbook', 'Calculator', 'Lab Coat', 'iPad', 'Headphones'].map((term) => (
-                <button
-                  key={term}
-                  type="button"
-                  onClick={() => handleSuggestionClick(term)}
-                  className="px-2.5 py-1 rounded-full bg-[var(--color-surface-soft)] border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-colors cursor-pointer"
-                >
-                  {term}
-                </button>
-              ))}
-            </div>
           </div>
 
-          {/* Trust stat mini cells */}
-          <div className="col-span-12 lg:col-span-4 grid grid-cols-2 gap-3 sm:gap-4">
+          {/* Trust stat mini cells — clean spacing between box grids */}
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {[
               { icon: Users, value: registeredCount, label: 'Verified Students', color: 'var(--color-primary)', bg: 'var(--color-primary-soft)' },
               { icon: LayoutGrid, value: CATEGORIES.length, label: 'Categories', color: 'var(--color-verified)', bg: 'var(--color-verified-soft)' },
               { icon: Zap, value: '24h', label: 'Quick Deals', color: 'var(--color-success)', bg: '#EAF0E7' },
               { icon: ShieldCheck, value: '100%', label: 'OTP Protected', color: 'var(--color-ink)', bg: 'var(--color-surface-soft)' },
             ].map((stat, i) => (
-              <div key={stat.label + i} className="card flex flex-col items-center justify-center text-center p-5 bento-animate" style={{ animationDelay: `${0.1 + i * 0.06}s` }}>
-                <div className="w-11 h-11 rounded-[var(--radius-md)] flex items-center justify-center mb-2.5 shadow-soft-sm" style={{ backgroundColor: stat.bg }}>
-                  <stat.icon className="w-5 h-5" style={{ color: stat.color }} />
+              <div key={stat.label + i} className="card flex flex-col items-center justify-center text-center p-6 bento-animate hover:!translate-y-[-2px]" style={{ animationDelay: `${0.1 + i * 0.06}s` }}>
+                <div className="w-12 h-12 rounded-[var(--radius-md)] flex items-center justify-center mb-3 shadow-soft-sm" style={{ backgroundColor: stat.bg }}>
+                  <stat.icon className="w-6 h-6" style={{ color: stat.color }} />
                 </div>
-                <div className="font-display font-bold text-lg text-[var(--color-ink)]">{stat.value}</div>
-                <div className="text-xs text-[var(--color-ink-soft)] font-medium mt-0.5">{stat.label}</div>
+                <div className="font-display font-bold text-xl text-[var(--color-ink)]">{stat.value}</div>
+                <div className="text-xs text-[var(--color-ink-soft)] font-semibold uppercase tracking-wider mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
