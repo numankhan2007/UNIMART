@@ -38,11 +38,11 @@ export default function ProductDetails({ product, onOrder, onBack }) {
   const createdAt = product.created_at || product.createdAt;
 
   const conditionColorMap = {
-    'New': 'emerald',
-    'Like New': 'cyan',
-    'Excellent': 'indigo',
-    'Good': 'amber',
-    'Acceptable': 'orange',
+    'New': 'success',
+    'Like New': 'info',
+    'Excellent': 'primary',
+    'Good': 'neutral',
+    'Acceptable': 'warning',
   };
 
   return (
@@ -50,7 +50,7 @@ export default function ProductDetails({ product, onOrder, onBack }) {
       {/* Back Button */}
       <button
         onClick={onBack}
-        className="flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors mb-6 group"
+        className="flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-[var(--color-primary)] transition-colors mb-6 group"
       >
         <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
         <span className="text-sm font-medium">Back to browse</span>
@@ -59,7 +59,7 @@ export default function ProductDetails({ product, onOrder, onBack }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Image Section */}
         <div className="space-y-4">
-          <div className="relative overflow-hidden bg-white rounded-3xl border border-gray-100 shadow-2xl shadow-indigo-500/10 transition-transform duration-300 hover:scale-[1.02]">
+          <div className="relative overflow-hidden bg-white rounded-3xl border border-gray-100 shadow-soft-lg transition-transform duration-300 hover:scale-[1.02]">
             <div className="aspect-square flex items-center justify-center p-8">
               <img
                 src={images[selectedImage]}
@@ -77,7 +77,7 @@ export default function ProductDetails({ product, onOrder, onBack }) {
                   key={i}
                   onClick={() => setSelectedImage(i)}
                   className={`flex-shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all duration-300 bg-white shadow-md
-                    ${i === selectedImage ? 'border-indigo-500 ring-4 ring-indigo-500/20 scale-105' : 'border-gray-100 opacity-70 hover:opacity-100 hover:scale-105 hover:border-indigo-300'}`}
+                    ${i === selectedImage ? 'border-[var(--color-primary)] ring-4 ring-[var(--color-primary)]/20 scale-105' : 'border-gray-100 opacity-70 hover:opacity-100 hover:scale-105 hover:border-[var(--color-primary)]/50'}`}
                 >
                   <img
                     src={img}
@@ -96,7 +96,7 @@ export default function ProductDetails({ product, onOrder, onBack }) {
           <div>
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               {category && (
-                <Badge color={category?.color || 'amber'}>
+                <Badge color="primary">
                   {category?.name}
                 </Badge>
               )}
@@ -113,7 +113,7 @@ export default function ProductDetails({ product, onOrder, onBack }) {
 
           {/* Price */}
           <div className="flex items-baseline gap-3">
-            <span className="text-3xl font-bold gradient-text">
+            <span className="text-3xl font-bold font-data gradient-text">
               {formatPrice(product.price)}
             </span>
             {isSold && (
@@ -145,8 +145,8 @@ export default function ProductDetails({ product, onOrder, onBack }) {
               </div>
             </div>
             <div className="glass-card p-4 flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <MapPin size={20} className="text-purple-500" />
+              <div className="w-12 h-12 rounded-2xl bg-[var(--color-surface-soft)] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <MapPin size={20} className="text-[var(--color-ink-soft)]" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Campus</p>
@@ -155,19 +155,19 @@ export default function ProductDetails({ product, onOrder, onBack }) {
             </div>
             {createdAt && (
               <div className="glass-card p-4 flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-2xl bg-pink-50 dark:bg-pink-900/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Calendar size={20} className="text-pink-500" />
+                <div className="w-12 h-12 rounded-2xl bg-[var(--color-surface-soft)] flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Calendar size={20} className="text-[var(--color-ink-soft)]" />
                 </div>
                 <div>
                   <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Listed</p>
-                  <p className="text-base font-bold text-gray-900 dark:text-white">{formatDate(createdAt)}</p>
+                  <p className="text-base font-bold text-gray-900 dark:text-white font-data">{formatDate(createdAt)}</p>
                 </div>
               </div>
             )}
             {condition && (
               <div className="glass-card p-4 flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Shield size={20} className="text-emerald-500" />
+                <div className="w-12 h-12 rounded-2xl bg-[var(--color-primary-soft)] flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Shield size={20} className="text-[var(--color-primary)]" />
                 </div>
                 <div>
                   <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Condition</p>
@@ -187,7 +187,7 @@ export default function ProductDetails({ product, onOrder, onBack }) {
               disabled={isSold}
               onClick={onOrder}
               icon={ShoppingCart}
-              className={`transform transition-all duration-300 ${!isSold && "hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/25"} !rounded-2xl !py-4 text-lg`}
+              className={`transform transition-all duration-300 ${!isSold && "hover:-translate-y-1 hover:shadow-soft-lg"} !rounded-2xl !py-4 text-lg`}
             >
               {isSold ? 'This item has been sold' : 'Place Order'}
             </Button>

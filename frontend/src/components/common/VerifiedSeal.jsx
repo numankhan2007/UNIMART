@@ -1,23 +1,39 @@
 import React from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { ShieldCheck } from "lucide-react";
 
-export default function VerifiedSeal({ size = 48, points, className = '' }) {
+/**
+ * VerifiedSeal — the app's signature trust element.
+ * Gold + soft elevation are reserved for verification moments only
+ * (profile badges, registry match confirmation, order handoff).
+ * Do not reuse this color/shape for decoration elsewhere.
+ */
+export default function VerifiedSeal({ size = 48, label, className = "" }) {
   return (
-    <div 
-      className={`inline-flex items-center justify-center shrink-0 ${className}`}
-      style={{
-        width: size, 
-        height: size, 
-        borderRadius: '50%',
-        background: 'var(--color-verified-soft)',
-        border: '1px solid var(--color-verified)',
-        boxShadow: 'var(--shadow-soft-md)',
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center',
-      }}
-    >
-      <CheckCircle2 size={size * 0.55} style={{ color: 'var(--color-verified)', fill: 'var(--color-verified-soft)' }} strokeWidth={2.5} />
+    <div className={`inline-flex items-center gap-2.5 ${className}`}>
+      <div
+        className="flex items-center justify-center rounded-full shrink-0"
+        style={{
+          width: size,
+          height: size,
+          background: "var(--color-verified-soft)",
+          border: "1px solid var(--color-verified)",
+          boxShadow: "var(--shadow-md)",
+        }}
+      >
+        <ShieldCheck
+          size={size * 0.55}
+          strokeWidth={2.25}
+          style={{ color: "var(--color-verified)" }}
+        />
+      </div>
+      {label && (
+        <span
+          className="text-sm font-semibold"
+          style={{ color: "var(--color-ink)" }}
+        >
+          {label}
+        </span>
+      )}
     </div>
   );
 }

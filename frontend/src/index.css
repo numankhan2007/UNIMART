@@ -32,12 +32,15 @@
   }
 
   :root {
-    /* Brand */
-    --color-primary: #7A1F2B;
-    --color-primary-strong: #5C1620;
-    --color-primary-soft: #F5E6E4;
+    /* Brand — institutional burgundy, replaces indigo */
+    --color-brand: #7A1F2B;
+    --color-brand-strong: #5C1620;
+    --color-brand-soft: #F5E6E4;
+    --color-primary: var(--color-brand);
+    --color-primary-strong: var(--color-brand-strong);
+    --color-primary-soft: var(--color-brand-soft);
 
-    /* Verification — reserve this for verified/trust moments only. Nothing else uses gold. */
+    /* Verification — antique gold, reserved for verified/trust states only */
     --color-verified: #B8873A;
     --color-verified-soft: #F7EFDD;
 
@@ -81,6 +84,11 @@
     --shadow-card: var(--shadow-soft-md);
     --shadow-card-hover: var(--shadow-soft-lg);
 
+    /* Radius compat aliases */
+    --radius-card: var(--radius-lg);
+    --radius-button: var(--radius-sm);
+    --radius-container: var(--radius-lg);
+
     /* Transition compat aliases */
     --transition-spring: var(--ease-spring);
     --transition-smooth: var(--ease-standard);
@@ -88,9 +96,12 @@
   }
 
   .dark {
-    --color-primary: #D68A93;
-    --color-primary-strong: #9B3040;
-    --color-primary-soft: #3A2024;
+    --color-brand: #D68A93;
+    --color-brand-strong: #9B3040;
+    --color-brand-soft: #3A2024;
+    --color-primary: var(--color-brand);
+    --color-primary-strong: var(--color-brand-strong);
+    --color-primary-soft: var(--color-brand-soft);
 
     --color-verified: #D4A94D;
     --color-verified-soft: #3D3320;
@@ -362,11 +373,16 @@
     scrollbar-width: none;
   }
 
-  /* Trust & Display typography — Crimson Pro serif */
+  /* Display/heading typography — Crimson Pro serif */
   .font-trust,
   .font-display {
     font-family: 'Crimson Pro', Georgia, serif;
     font-weight: 600;
+  }
+
+  /* Numeric/verification data — JetBrains Mono */
+  .font-data {
+    font-family: 'JetBrains Mono', monospace;
   }
 }
 

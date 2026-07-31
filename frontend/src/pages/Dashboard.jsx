@@ -147,9 +147,9 @@ export default function Dashboard() {
   };
 
   const statCards = [
-    { icon: ShoppingCart, label: 'Purchases', value: buyOrders.length, loading: loadingOrders, color: '#6366f1', bg: '#eef2ff' },
-    { icon: Package, label: 'Sales', value: sellOrders.length, loading: loadingOrders, color: '#8b5cf6', bg: '#f5f3ff' },
-    { icon: Tag, label: 'My Products', value: myProductsCount, loading: loadingProducts, color: '#10b981', bg: '#ecfdf5' },
+    { icon: ShoppingCart, label: 'Purchases', value: buyOrders.length, loading: loadingOrders, color: 'var(--color-primary)', bg: 'var(--color-primary-soft)' },
+    { icon: Package, label: 'Sales', value: sellOrders.length, loading: loadingOrders, color: 'var(--color-ink-soft)', bg: 'var(--color-surface-soft)' },
+    { icon: Tag, label: 'My Products', value: myProductsCount, loading: loadingProducts, color: 'var(--color-primary-strong)', bg: 'var(--color-primary-soft)' },
   ];
 
   return (
@@ -165,7 +165,7 @@ export default function Dashboard() {
             <div ref={infoRef} className="absolute" style={{ top: '15px', right: '15px' }}>
               <button
                 onClick={() => setShowInfoPopover(!showInfoPopover)}
-                className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
+                className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-[var(--color-primary-soft)] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-[var(--color-primary)] transition-all"
                 title="Account Info"
               >
                 <Info size={16} />
@@ -175,7 +175,7 @@ export default function Dashboard() {
                 <div className="absolute right-0 top-10 w-64 bento-cell p-4 z-50 scale-in !rounded-xl">
                     <div className="absolute -top-2 right-3 w-4 h-4 bg-white dark:bg-gray-800 border-l border-t border-slate-200 dark:border-slate-700 rotate-45" />
                     <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
-                      <Info size={14} className="text-indigo-500" />
+                      <Info size={14} className="text-[var(--color-primary)]" />
                       Account Info
                     </h4>
                     <div className="space-y-2.5">
@@ -198,7 +198,7 @@ export default function Dashboard() {
             <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-5 sm:gap-6">
               {/* Avatar */}
               <div className="relative group shrink-0">
-                <div className="w-24 h-24 sm:w-20 sm:h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-3xl sm:text-2xl font-bold shadow-lg shadow-indigo-500/20 overflow-hidden">
+                <div className="w-24 h-24 sm:w-20 sm:h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-3xl sm:text-2xl font-bold shadow-soft-md overflow-hidden">
                   {user?.profilePictureUrl ? (
                     <img src={user.profilePictureUrl} alt="" className="w-full h-full object-cover" />
                   ) : (
@@ -218,7 +218,7 @@ export default function Dashboard() {
                 <div className="flex items-center justify-center sm:justify-start gap-2 w-full flex-wrap">
                   <h1 className="text-2xl font-bold text-slate-900 dark:text-white truncate max-w-full">{user?.username}</h1>
                   {user?.verified && (
-                    <span className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 rounded-full shrink-0">
+                    <span className="inline-flex items-center gap-1 text-xs font-bold text-[var(--color-verified)] bg-[var(--color-verified-soft)] border border-[var(--color-verified)]/30 px-2.5 py-0.5 rounded-full shrink-0 shadow-sm-token">
                       <BadgeCheck size={14} />
                       Verified
                     </span>
@@ -233,19 +233,19 @@ export default function Dashboard() {
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-2 mt-3 sm:mt-2 text-sm text-slate-500 dark:text-slate-400">
                   {user?.university && (
                     <span className="flex items-center gap-1.5">
-                      <GraduationCap size={14} className="shrink-0 text-indigo-500" />
+                      <GraduationCap size={14} className="shrink-0 text-[var(--color-primary)]" />
                       <span className="truncate max-w-[200px] sm:max-w-none">{user.university}</span>
                     </span>
                   )}
                   {user?.college && (
                     <span className="flex items-center gap-1.5">
-                      <MapPin size={14} className="shrink-0 text-purple-500" />
+                      <MapPin size={14} className="shrink-0 text-[var(--color-ink-soft)]" />
                       <span className="truncate max-w-[200px] sm:max-w-none">{user.college}</span>
                     </span>
                   )}
                   {user?.department && (
                     <span className="flex items-center gap-1.5">
-                      <User size={14} className="shrink-0 text-pink-500" />
+                      <User size={14} className="shrink-0 text-[var(--color-primary)]" />
                       <span className="truncate max-w-[200px] sm:max-w-none">{user.department}</span>
                     </span>
                   )}
@@ -265,9 +265,9 @@ export default function Dashboard() {
                     </span>
                   )}
                   {user?.studentId && (
-                    <span className="flex items-center gap-1.5 !py-1.5 !px-2.5 !rounded-lg bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 shrink-0" title="Register Number">
-                      <GraduationCap size={12} className="text-indigo-600 dark:text-indigo-400 shrink-0" />
-                      <span className="font-semibold text-indigo-700 dark:text-indigo-400">{user.studentId}</span>
+                    <span className="flex items-center gap-1.5 !py-1.5 !px-2.5 !rounded-lg bg-[var(--color-primary-soft)] border border-[var(--color-border)] shrink-0" title="Register Number">
+                      <GraduationCap size={12} className="text-[var(--color-primary)] shrink-0" />
+                      <span className="font-semibold text-[var(--color-primary)] font-data">{user.studentId}</span>
                     </span>
                   )}
                 </div>
@@ -281,7 +281,7 @@ export default function Dashboard() {
               <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: stat.bg }}>
                 <stat.icon size={20} style={{ color: stat.color }} />
               </div>
-              <p className="text-xl font-bold text-slate-900 dark:text-white">
+              <p className="text-xl font-bold text-slate-900 dark:text-white font-data">
                 {stat.loading ? <Loader2 size={18} className="animate-spin mx-auto" /> : stat.value}
               </p>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{stat.label}</p>
@@ -295,7 +295,7 @@ export default function Dashboard() {
           <div className="mt-4">
             {loadingOrders ? (
               <div className="flex items-center justify-center py-12">
-                <Loader2 className="w-6 h-6 animate-spin text-indigo-500" />
+                <Loader2 className="w-6 h-6 animate-spin text-[var(--color-primary)]" />
               </div>
             ) : activeTab === 'buy' ? (
               <BuyHistory orders={buyOrders} />
@@ -367,8 +367,8 @@ export default function Dashboard() {
                 {/* Editable Fields */}
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <Pencil size={14} className="text-indigo-500" />
-                    <h3 className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Editable Fields</h3>
+                    <Pencil size={14} className="text-[var(--color-primary)]" />
+                    <h3 className="text-xs font-bold text-[var(--color-primary)] uppercase tracking-wider">Editable Fields</h3>
                   </div>
 
                   <div className="flex items-center gap-4 mb-4">

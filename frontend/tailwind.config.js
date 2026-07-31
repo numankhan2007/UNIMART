@@ -15,15 +15,35 @@ export default {
       },
       colors: {
         /* ─── Consolidated tokens (reference CSS variables) ─── */
+        /* Institutional burgundy scale — replaces indigo. 600/700 match --color-brand / --color-brand-strong */
         brand: {
           DEFAULT: 'var(--color-primary)',
           strong: 'var(--color-primary-strong)',
           soft: 'var(--color-primary-soft)',
         },
         primary: {
+          50: '#FBF1F1',
+          100: '#F5E6E4',
+          200: '#E9CBC8',
+          300: '#D8A29D',
+          400: '#C17972',
+          500: '#A34F49',
+          600: '#7A1F2B',
+          700: '#5C1620',
+          800: '#451018',
+          900: '#300B11',
+          950: '#1F0709',
           DEFAULT: 'var(--color-primary)',
           strong: 'var(--color-primary-strong)',
           soft: 'var(--color-primary-soft)',
+        },
+        /* Antique gold — verification accent, used only for verified/trust states */
+        gold: {
+          50: '#FDF8EF',
+          100: '#F7EFDD',
+          400: '#D4A94D',
+          500: '#B8873A',
+          600: '#96692A',
         },
         verified: {
           DEFAULT: 'var(--color-verified)',
@@ -43,6 +63,13 @@ export default {
           DEFAULT: 'var(--color-border)',
           soft: 'var(--color-border-soft)',
         },
+      },
+      backgroundImage: {
+        'gradient-primary': 'linear-gradient(135deg, #7A1F2B, #B8873A)',
+        'gradient-subtle': 'linear-gradient(135deg, #F5E6E4 0%, #F7EFDD 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #2A1015 0%, #451018 50%, #5C1620 100%)',
+        'gradient-card': 'linear-gradient(135deg, rgba(122,31,43,0.05), rgba(184,135,58,0.05), rgba(122,31,43,0.03))',
+        'gradient-glass': 'linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6))',
       },
       boxShadow: {
         'sm-token': 'var(--shadow-sm)',

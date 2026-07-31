@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Heart, CheckCircle2 } from 'lucide-react';
+import { MapPin, Heart, ShieldCheck } from 'lucide-react';
 import SoldRibbon from './SoldRibbon';
 import { formatPrice } from '../../utils/helpers';
 
@@ -58,8 +58,8 @@ export default function ProductCard({ product, index = 0 }) {
 
           {/* Verified Seller Badge */}
           {isVerifiedSeller && !isSold && (
-            <div className="absolute top-3 left-3 z-10 bg-[var(--color-surface)]/95 dark:bg-[var(--color-surface)]/95 border border-[var(--color-verified)] shadow-sm text-[var(--color-verified)] text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
-              <CheckCircle2 size={13} style={{ color: 'var(--color-verified)', fill: 'var(--color-verified-soft)' }} strokeWidth={2.5} />
+            <div className="absolute top-3 left-3 z-10 bg-[var(--color-verified-soft)] border border-[var(--color-verified)] shadow-sm-token text-[var(--color-verified)] text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+              <ShieldCheck size={13} style={{ color: 'var(--color-verified)' }} strokeWidth={2.5} />
               <span className="text-[var(--color-ink)] font-semibold">Verified</span>
             </div>
           )}
@@ -69,10 +69,10 @@ export default function ProductCard({ product, index = 0 }) {
           {/* Price Tag */}
           <div className="absolute bottom-3 right-3 z-10">
             <span
-              className={`inline-flex items-center justify-center font-bold text-sm px-3.5 py-1.5 rounded-full shadow-sm border
+              className={`inline-flex items-center justify-center font-bold font-data text-sm px-3.5 py-1.5 rounded-full shadow-sm-token border
                 ${isFree
-                  ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
-                  : 'bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white border-slate-200/50 dark:border-slate-700/50'
+                  ? 'bg-[var(--color-success)]/10 text-[var(--color-success)] border-[var(--color-success)]/20'
+                  : 'bg-[var(--color-surface)]/95 text-[var(--color-ink)] border-[var(--color-border)]/50'
               }`}>
               {formatPrice(product.price)}
             </span>
@@ -80,7 +80,7 @@ export default function ProductCard({ product, index = 0 }) {
         </div>
 
         {/* Info Section */}
-        <div className="p-4 flex flex-col flex-grow bg-[var(--bento-surface)]">
+        <div className="p-4 flex flex-col flex-grow bg-[var(--color-surface)]">
           <h3 className="font-semibold text-[var(--color-ink)] text-sm line-clamp-2 leading-snug group-hover:text-[var(--color-primary)] transition-colors mb-auto">
             {product.title}
           </h3>

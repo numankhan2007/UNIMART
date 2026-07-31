@@ -71,28 +71,28 @@ export default function OrderModal({ isOpen, onClose, product }) {
             </div>
 
             {/* Info Box */}
-            <div className="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 dark:border-indigo-800/30 rounded-xl p-4 space-y-2">
-              <h5 className="text-sm font-semibold text-indigo-700 dark:text-indigo-300">What happens next?</h5>
-              <ul className="text-xs text-indigo-600 dark:text-indigo-400 space-y-1.5">
+            <div className="bg-[var(--color-primary-soft)] border border-[var(--color-primary)]/20 rounded-xl p-4 space-y-2">
+              <h5 className="text-sm font-semibold text-[var(--color-primary)] font-display">What happens next?</h5>
+              <ul className="text-xs text-[var(--color-ink-soft)] space-y-1.5">
                 <li className="flex items-start gap-2">
-                  <span className="w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-800/30 flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5">1</span>
+                  <span className="w-5 h-5 rounded-full bg-[var(--color-primary)]/15 text-[var(--color-primary)] flex items-center justify-center text-[10px] font-bold font-data flex-shrink-0 mt-0.5">1</span>
                   Your order request will be sent to the seller
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-800/30 flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5">2</span>
+                  <span className="w-5 h-5 rounded-full bg-[var(--color-primary)]/15 text-[var(--color-primary)] flex items-center justify-center text-[10px] font-bold font-data flex-shrink-0 mt-0.5">2</span>
                   A private chat will open to coordinate the meetup
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-800/30 flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5">3</span>
+                  <span className="w-5 h-5 rounded-full bg-[var(--color-primary)]/15 text-[var(--color-primary)] flex items-center justify-center text-[10px] font-bold font-data flex-shrink-0 mt-0.5">3</span>
                   The seller will initiate a secure OTP handshake at delivery
                 </li>
               </ul>
             </div>
 
             {/* Privacy Notice */}
-            <div className="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800/30 rounded-xl">
-              <Shield size={16} className="text-emerald-500 flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-emerald-700 dark:text-emerald-300">
+            <div className="flex items-start gap-3 p-3 bg-[var(--color-success)]/10 border border-[var(--color-success)]/20 rounded-xl">
+              <Shield size={16} className="text-[var(--color-success)] flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-[var(--color-success)]">
                 <strong>Privacy Protected:</strong> Your email, phone number, and full name are never shared with the other party. All coordination happens within the app.
               </p>
             </div>
@@ -121,10 +121,10 @@ export default function OrderModal({ isOpen, onClose, product }) {
           <div className="space-y-6">
             {/* Success Icon */}
             <div className="text-center">
-              <div className="w-20 h-20 mx-auto rounded-full bg-emerald-100 dark:bg-emerald-900/20 flex items-center justify-center mb-4">
-                <CheckCircle size={44} className="text-emerald-500" />
+              <div className="w-20 h-20 mx-auto rounded-full bg-[var(--color-success)]/10 flex items-center justify-center mb-4">
+                <CheckCircle size={44} className="text-[var(--color-success)]" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Order Placed Successfully!</h3>
+              <h3 className="text-xl font-bold font-display text-gray-900 dark:text-white">Order Placed Successfully!</h3>
             </div>
 
             {/* Order Details Card */}
@@ -133,7 +133,7 @@ export default function OrderModal({ isOpen, onClose, product }) {
                 <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
                   <Hash size={12} /> Order ID
                 </span>
-                <span className="text-sm font-mono font-bold text-indigo-600 dark:text-indigo-400">
+                <span className="text-sm font-data font-bold text-[var(--color-primary)]">
                   #ORD-{placedOrder?.id?.toString().slice(-6) || '000001'}
                 </span>
               </div>
@@ -143,20 +143,20 @@ export default function OrderModal({ isOpen, onClose, product }) {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-500 dark:text-gray-400">Price</span>
-                <span className="text-sm font-bold gradient-text">{formatPrice(product.price)}</span>
+                <span className="text-sm font-bold font-data gradient-text">{formatPrice(product.price)}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-500 dark:text-gray-400">Status</span>
-                <span className="text-xs px-2 py-1 rounded-full bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 font-medium">
+                <span className="text-xs px-2.5 py-1 rounded-full bg-[var(--color-warning)]/10 text-[var(--color-warning)] border border-[var(--color-warning)]/25 font-medium">
                   Pending Seller Confirmation
                 </span>
               </div>
             </div>
 
             {/* Privacy Banner */}
-            <div className="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800/30 rounded-xl">
-              <Shield size={16} className="text-emerald-500 flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-emerald-700 dark:text-emerald-300">
+            <div className="flex items-start gap-3 p-3 bg-[var(--color-success)]/10 border border-[var(--color-success)]/20 rounded-xl">
+              <Shield size={16} className="text-[var(--color-success)] flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-[var(--color-success)]">
                 <strong>Privacy Protected:</strong> The seller's email, phone, and full name remain hidden. All coordination happens through the in-app chat.
               </p>
             </div>

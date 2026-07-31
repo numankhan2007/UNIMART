@@ -128,16 +128,16 @@ export default function Orders() {
         {/* Orders */}
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 size={32} className="animate-spin text-indigo-500" />
+            <Loader2 size={32} className="animate-spin text-[var(--color-primary)]" />
           </div>
         ) : filteredOrders.length === 0 ? (
           <div className="bento-cell text-center py-16 hover:!transform-none">
             <Package size={48} className="mx-auto text-slate-300 dark:text-slate-600 mb-4" />
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">No orders found</h3>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 font-display">No orders found</h3>
             <p className="text-slate-500 dark:text-slate-400 text-sm mb-4">
               {statusFilter === 'all' ? "You haven't placed or received any orders yet." : "No orders with this status."}
             </p>
-            <Link to="/home" className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
+            <Link to="/home" className="text-sm text-[var(--color-primary)] hover:underline font-semibold">
               Browse products →
             </Link>
           </div>
@@ -167,13 +167,13 @@ export default function Orders() {
                           </p>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Badge color={isBuyer ? 'cyan' : 'purple'}>
+                          <Badge color={isBuyer ? 'info' : 'primary'}>
                             {isBuyer ? 'Buying' : 'Selling'}
                           </Badge>
                           <OrderStatusBadge status={order.order_status} />
                         </div>
                       </div>
-                      <p className="text-xl font-bold gradient-text mt-2">
+                      <p className="text-xl font-bold font-data gradient-text mt-2">
                         {formatPrice(order.product_price)}
                       </p>
 
@@ -209,20 +209,20 @@ export default function Orders() {
                         )}
 
                         {isBuyer && order.order_status === ORDER_STATUS.PENDING && (
-                          <span className="text-xs text-amber-600 dark:text-amber-400 flex items-center gap-1 px-3 py-1.5">
+                          <span className="text-xs text-[var(--color-warning)] flex items-center gap-1 px-3 py-1.5 font-medium">
                             ⏳ Waiting for seller confirmation
                           </span>
                         )}
 
                         {isBuyer && order.order_status === ORDER_STATUS.CONFIRMED && (
-                          <span className="text-xs text-purple-600 dark:text-purple-400 flex items-center gap-1 px-3 py-1.5">
+                          <span className="text-xs text-[var(--color-primary)] flex items-center gap-1 px-3 py-1.5 font-medium">
                             📧 Waiting for seller to initiate delivery
                           </span>
                         )}
 
                         {order.order_status === ORDER_STATUS.COMPLETED && (
-                          <span className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1 px-3 py-1.5">
-                            ✅ Delivered on {formatDate(order.completed_at)}
+                          <span className="text-xs text-[var(--color-success)] flex items-center gap-1 px-3 py-1.5 font-medium">
+                            ✅ Delivered on <span className="font-data">{formatDate(order.completed_at)}</span>
                           </span>
                         )}
                       </div>
