@@ -150,9 +150,9 @@ export default function NotificationBell() {
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 sm:w-96 glass-card overflow-hidden z-50 animate-slide-down">
+        <div className="absolute right-0 mt-2 w-80 sm:w-96 card !bg-[var(--color-surface)] !border-[var(--color-border)] !shadow-[var(--shadow-soft-lg)] overflow-hidden z-50 animate-slide-down">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-white/50 dark:bg-gray-800/50 backdrop-blur-md">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[var(--color-surface-soft)]">
             <h3 className="font-semibold text-gray-900 dark:text-white">Notifications</h3>
             <div className="flex items-center gap-2">
               {unreadCount > 0 && (
@@ -243,7 +243,7 @@ export default function NotificationBell() {
 
           {/* Footer */}
           {notifications.length > 0 && (
-            <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-800 bg-white/50 dark:bg-gray-800/50 backdrop-blur-md">
+            <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-800 bg-[var(--color-surface-soft)]">
               <button
                 onClick={() => {
                   navigate('/orders');

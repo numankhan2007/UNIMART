@@ -225,14 +225,7 @@ export default function Navbar() {
 
                   {showDropdown && (
                     <div
-                      className="absolute right-0 top-full mt-2 w-64 rounded-2xl overflow-hidden scale-in"
-                      style={{
-                        background: 'var(--glass-bg)',
-                        backdropFilter: 'blur(24px)',
-                        WebkitBackdropFilter: 'blur(24px)',
-                        border: '1px solid var(--glass-border)',
-                        boxShadow: '0 16px 48px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06)',
-                      }}
+                      className="absolute right-0 top-full mt-2 w-64 rounded-[var(--radius-lg)] overflow-hidden scale-in card !bg-[var(--color-surface)] !border-[var(--color-border)] !shadow-[var(--shadow-soft-lg)] !z-50"
                     >
                         {/* Profile Header */}
                         <div className="px-4 py-3 border-b border-gray-100/60 dark:border-white/[0.06] bg-gradient-to-r from-primary-50/50 to-purple-50/50 dark:from-primary-900/10 dark:to-purple-900/10">
@@ -341,14 +334,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {showMobileMenu && isAuthenticated && (
           <div
-            className="md:hidden mt-2 rounded-2xl overflow-hidden fade-in"
-            style={{
-              background: 'var(--glass-bg)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
-              border: '1px solid var(--glass-border)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-            }}
+            className="md:hidden mt-2 rounded-[var(--radius-lg)] overflow-hidden fade-in card !bg-[var(--color-surface)] !border-[var(--color-border)] !shadow-[var(--shadow-soft-lg)] !z-50"
           >
               {/* Mobile Search */}
               <form onSubmit={handleSearch} className="p-3">

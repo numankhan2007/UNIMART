@@ -172,8 +172,8 @@ export default function Dashboard() {
               </button>
 
               {showInfoPopover && (
-                <div className="absolute right-0 top-10 w-64 bento-cell p-4 z-50 scale-in !rounded-xl">
-                    <div className="absolute -top-2 right-3 w-4 h-4 bg-white dark:bg-gray-800 border-l border-t border-slate-200 dark:border-slate-700 rotate-45" />
+                <div className="absolute right-0 top-10 w-64 card !bg-[var(--color-surface)] !border-[var(--color-border)] !shadow-[var(--shadow-soft-lg)] p-4 z-50 scale-in !rounded-[var(--radius-lg)]">
+                    <div className="absolute -top-2 right-3 w-4 h-4 bg-[var(--color-surface)] border-l border-t border-[var(--color-border)] rotate-45" />
                     <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
                       <Info size={14} className="text-[var(--color-primary)]" />
                       Account Info
@@ -331,7 +331,7 @@ export default function Dashboard() {
           onClick={() => setShowEditModal(false)}
         >
           <div
-            className="w-full max-w-lg bento-cell overflow-hidden scale-in hover:!transform-none"
+            className="w-full max-w-lg card !bg-[var(--color-surface)] !border-[var(--color-border)] !shadow-[var(--shadow-soft-lg)] overflow-hidden scale-in hover:!transform-none"
             onClick={(e) => e.stopPropagation()}
           >
               <div className="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-800">

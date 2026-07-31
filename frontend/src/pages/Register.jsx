@@ -406,7 +406,7 @@ export default function Register() {
   return (
     <div className="flex items-center justify-center p-6 lg:p-12 font-sans overflow-hidden">
       {/* Form Card */}
-      <div className="w-full max-w-md glass-card p-8 sm:p-10 relative z-10 scale-in">
+      <div className="w-full max-w-md card !bg-[var(--color-surface)] !border-[var(--color-border)] !shadow-[var(--shadow-soft-lg)] p-8 sm:p-10 relative z-10 scale-in">
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center justify-center gap-2 mb-6">
             <div className="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
